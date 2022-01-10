@@ -1,4 +1,4 @@
-package com.example.testapplication.model;
+package com.example.Password_manager.model;
 
 public class Category {
     int id;

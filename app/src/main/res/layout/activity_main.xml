@@ -21,12 +21,10 @@
             android:contentDescription="@string/alter_add" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/Rt"
             android:layout_width="409dp"
             android:layout_height="55dp"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
@@ -75,5 +73,15 @@
                     app:layout_constraintStart_toEndOf="@+id/floatingActionButton3"
                     app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/Main"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Rt" />
 
 </android.support.constraint.ConstraintLayout>
