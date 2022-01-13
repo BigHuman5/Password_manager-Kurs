@@ -12,17 +12,20 @@ import android.util.Log;
 import com.example.Password_manager.DataBase.DBHelper;
 import com.example.Password_manager.adapter.CategoryAdapter;
 import com.example.Password_manager.adapter.MainInfoAdapter;
+import com.example.Password_manager.adapter.MainInfo_InformationAdapter;
 import com.example.Password_manager.model.Category;
 import com.example.Password_manager.model.MainInfo;
+import com.example.Password_manager.model.MainInfo_Information;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView categoryFilterRecycler, mainInfoRecycler;
+    RecyclerView categoryFilterRecycler, mainInfoRecycler,mainInfo_InformationRecycler;
     CategoryAdapter categoryAdapter;
     MainInfoAdapter mainInfoAdapter;
+    MainInfo_InformationAdapter mainInfo_informationAdapter;
 
     DBHelper dbHelper;
     @Override
@@ -31,13 +34,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //dbHelper = new DBHelper(this);
 
+        SettingsProject settingsProject = new SettingsProject();
+        int language = settingsProject.getLanguage();
+
         List<Category> categoryList=new ArrayList<>();
         List<MainInfo> mainInfoList = new ArrayList<>();
+        List<MainInfo_Information> mainInfo_informationList = new ArrayList<>();
 
 
-        StringsProject stringsProject = new StringsProject();
-        categoryList = stringsProject.getListCategoryFilterTitle();
-        mainInfoList = stringsProject.getListMainInfo();
+        StringsProject stringsProject = new StringsProject(language);
+        categoryList = stringsProject.getListCategoryFilterTitle(language);
+        mainInfoList = stringsProject.getListMainInfo(language);
+        mainInfo_informationList = stringsProject.getListMainInformation(language);
 
         setCategoryRecycler(categoryList);
         setMainInformationRecycler(mainInfoList);

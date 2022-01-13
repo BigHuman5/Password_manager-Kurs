@@ -2,7 +2,6 @@ package com.example.Password_manager.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Password_manager.R;
-import com.example.Password_manager.model.Category;
 import com.example.Password_manager.model.MainInfo;
 
 import java.util.List;
@@ -31,13 +29,16 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
     @NonNull
     @Override
     public MainInfoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View MainInfoItems = LayoutInflater.from(context).inflate(R.layout.websites_close,viewGroup,false);
+        View MainInfoItems = LayoutInflater.from(context).inflate(R.layout.maininfo_content,viewGroup,false);
         return new MainInfoAdapter.MainInfoViewHolder(MainInfoItems);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainInfoViewHolder mainInfoViewHolder, int i) {
         mainInfoViewHolder.name_content.setText(MainInfoList.get(i).getNameContent());
+
+        mainInfoViewHolder.CardViewforInformation.setBackgroundResource(R.color.forActionButtonMain);
+
     }
 
     @Override
@@ -51,11 +52,8 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
         ImageView img_content;
         TextView name_content;
         FloatingActionButton more_info_about_content;
-        CardView cardView;
-        ConstraintLayout layout_grey;
-        TextView arg_content;
-        TextView value_content;
-        FloatingActionButton secure_content;
+        CardView CardViewforInformation;
+
 
 
 
@@ -66,12 +64,9 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
             img_content = itemView.findViewById(R.id.img_content);
             name_content = itemView.findViewById(R.id.name_content);
 
-            cardView = itemView.findViewById(R.id.CardView);
-            layout_grey = itemView.findViewById(R.id.layout_grey);
+            more_info_about_content = itemView.findViewById(R.id.more_info_about_content);
+            CardViewforInformation = itemView.findViewById(R.id.cardviewforinformation);
 
-            arg_content = itemView.findViewById(R.id.Arg);
-            value_content = itemView.findViewById(R.id.Arg_value);
-            secure_content = itemView.findViewById(R.id.secure);
         }
     }
 }
