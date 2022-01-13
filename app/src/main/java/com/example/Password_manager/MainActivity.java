@@ -11,39 +11,58 @@ import android.util.Log;
 
 import com.example.Password_manager.DataBase.DBHelper;
 import com.example.Password_manager.adapter.CategoryAdapter;
+import com.example.Password_manager.adapter.MainInfoAdapter;
 import com.example.Password_manager.model.Category;
+import com.example.Password_manager.model.MainInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView categoryFilterRecycler;
+    RecyclerView categoryFilterRecycler, mainInfoRecycler;
     CategoryAdapter categoryAdapter;
+    MainInfoAdapter mainInfoAdapter;
 
     DBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        dbHelper = new DBHelper(this);
+        setContentView(R.layout.activity_main);
+        //dbHelper = new DBHelper(this);
 
-        //List<Category> categoryList=new ArrayList<>();
-        //StringsProject stringsProject = new StringsProject();
-        //categoryList = stringsProject.getListCategoryFilterTitle();
+        List<Category> categoryList=new ArrayList<>();
+        List<MainInfo> mainInfoList = new ArrayList<>();
 
-        //setCategoryRecycley(categoryList);
-        TestFunc();
+
+        StringsProject stringsProject = new StringsProject();
+        categoryList = stringsProject.getListCategoryFilterTitle();
+        mainInfoList = stringsProject.getListMainInfo();
+
+        setCategoryRecycler(categoryList);
+        setMainInformationRecycler(mainInfoList);
+       // TestFunc();
     }
 
-    private void setCategoryRecycley(List<Category> categoryList) {
+    private void setCategoryRecycler(List<Category> categoryList) {
        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
-        categoryFilterRecycler = findViewById(R.id.Rt);
+        categoryFilterRecycler = findViewById(R.id.CategoryFilterTitle);
         categoryFilterRecycler.setLayoutManager(layoutManager);
 
         categoryAdapter=new CategoryAdapter(this,categoryList);
 
         categoryFilterRecycler.setAdapter(categoryAdapter);
+    }
+
+    private void setMainInformationRecycler(List<MainInfo> mainInfoList)
+    {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        mainInfoRecycler = findViewById(R.id.Main);
+        mainInfoRecycler.setLayoutManager(layoutManager);
+
+        mainInfoAdapter=new MainInfoAdapter(this,mainInfoList);
+
+        mainInfoRecycler.setAdapter(mainInfoAdapter);
     }
 
     private void TestFunc()
@@ -79,4 +98,5 @@ public class MainActivity extends AppCompatActivity {
         cursor.close();
         dbHelper.close();
     }
+
 }

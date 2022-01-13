@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.18796296296296297" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_content_copy_10.xml" value="0.22407407407407406" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_content_copy_24.xml" value="0.24166666666666667" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_visibility_10.xml" value="0.21944444444444444" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/font/roboto_bold.xml" value="0.2740740740740741" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/font/roboto_thin.xml" value="0.2740740740740741" />
-        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/category_filter.xml" value="0.33" />
-        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/websites_close.xml" value="0.33" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/website_open.xml" value="0.9" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/websites_close.xml" value="0.1" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/xml/actions.xml" value="0.1286231884057971" />
         <entry key="..\:/Users/user/TestApplication/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/user/TestApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10092592592592593" />

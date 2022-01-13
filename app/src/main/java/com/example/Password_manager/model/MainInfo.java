@@ -2,62 +2,73 @@ package com.example.Password_manager.model;
 
 
 public class MainInfo {
-    /*For Website*/
-    String login;
-    String password;
-    /*            */
 
-    /*For Bank cards*/
-    String numberCard;
-    String dateCard;
-    String CVV;
-    /*            */
 
-    public MainInfo(String login, String password, String numberCard, String dateCard, String CVV) {
-        this.login = login;
-        this.password = password;
-        this.numberCard = numberCard;
-        this.dateCard = dateCard;
-        this.CVV = CVV;
+    /*For All*/
+    String nameContent;
+
+    int type;
+     /*            */
+
+    String arg1;
+    String arg2;
+    String arg3;
+    String arg4;
+
+    public MainInfo(String nameContent, int type, String arg1, String arg2, String arg3, String arg4) {
+        this.nameContent = nameContent;
+        this.type = type;
+        this.arg1 = arg1;
+        this.arg2 = arg2;
+        this.arg3 = arg3;
+        this.arg4 = arg4;
     }
 
-    public String getLogin() {
-        return login;
+    public String getNameContent() {
+        return nameContent;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setNameContent(String nameContent) {
+        this.nameContent = nameContent;
     }
 
-    public String getPassword() {
-        return password;
+    public int getType() {
+        return type;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setType(int type) {
+        this.type = type;
     }
 
-    public String getNumberCard() {
-        return numberCard;
+    public String getArg1() {
+        return arg1;
     }
 
-    public void setNumberCard(String numberCard) {
-        this.numberCard = numberCard;
+    public void setArg1(String arg1) {
+        this.arg1 = arg1;
     }
 
-    public String getDateCard() {
-        return dateCard;
+    public String getArg2() {
+        return arg2;
     }
 
-    public void setDateCard(String dateCard) {
-        this.dateCard = dateCard;
+    public void setArg2(String arg2) {
+        this.arg2 = arg2;
     }
 
-    public String getCVV() {
-        return CVV;
+    public String getArg3() {
+        return arg3;
     }
 
-    public void setCVV(String CVV) {
-        this.CVV = CVV;
+    public void setArg3(String arg3) {
+        this.arg3 = arg3;
+    }
+
+    public String getArg4() {
+        return arg4;
+    }
+
+    public void setArg4(String arg4) {
+        this.arg4 = arg4;
     }
 }

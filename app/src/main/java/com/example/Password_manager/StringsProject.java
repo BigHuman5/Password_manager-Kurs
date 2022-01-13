@@ -1,6 +1,7 @@
 package com.example.Password_manager;
 
 import com.example.Password_manager.model.Category;
+import com.example.Password_manager.model.MainInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,20 @@ public class StringsProject {
             categoryList.add(new Category(i,categoryFilterTitle[i]));
         return categoryList;
     }
+
+    public List<MainInfo> getListMainInfo()
+    {
+        definitionStrings();
+        List<MainInfo> mainInfoList = new ArrayList<>();
+        for(int i=0;i<=6;i++) {
+            mainInfoList.add(new MainInfo("vk.com", 1, null, null, null, null));
+            mainInfoList.add(new MainInfo("twitter.com", 1, null, null, null, null));
+            mainInfoList.add(new MainInfo("facebook.com", 1, null, null, null, null));
+        }
+        return mainInfoList;
+    }
+
+
     public String[] getCategoryFilterTitle() {
         return categoryFilterTitle;
     }

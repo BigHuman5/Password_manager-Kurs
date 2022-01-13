@@ -1,15 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/mainInfoWhite"
+    android:layout_marginBottom="10dp">
 
-    <TextView
-        android:id="@+id/website_name"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_close_or_open_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/main_thin"
-        android:text="Name_website"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="29dp"
+        android:backgroundTint="@color/mainInfoWhite"
+        android:clickable="true"
+        android:contentDescription="button_close_or_open_content"
+        android:minHeight="48dp"
+        android:scaleType="center"
+        app:borderWidth="0px"
+        app:elevation="0px"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+
+    <ImageView
+        android:id="@+id/img_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="29dp"
+        android:backgroundTint="@color/mainInfoWhite"
+        android:contentDescription="img_content"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:scaleType="center"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_close_or_open_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_language_24" />
+
+
+
+    <TextView
+        android:id="@+id/name_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="29dp"
+        android:fontFamily="@font/main_bold"
+        android:text="NameWebSite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/more_info_about_content"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/img_content"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/more_info_about_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="29dp"
+        android:backgroundTint="@color/mainInfoWhite"
+        android:clickable="true"
+        android:contentDescription="MoreInfo"
+        android:minHeight="48dp"
+        android:scaleType="center"
+        app:borderWidth="0px"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24"
+        tools:ignore="TouchTargetSizeCheck" />
+
 </android.support.constraint.ConstraintLayout>
