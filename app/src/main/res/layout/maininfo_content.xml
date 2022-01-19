@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mainInfoWhite">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardviewforinformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="cardviewforinformation"
+            android:visibility="visible"
+            app:cardBackgroundColor="@color/mainInfoWhite"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_content"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/Maininfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/layout_Arg1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/copy1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/arg1_value"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_content_copy_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/arg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/main_thin"
+                        android:maxEms="25"
+                        android:text="{ARG_1}"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toTopOf="@+id/arg1_value"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/arg1_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/main_bold"
+                        android:maxEms="25"
+                        android:text="{VALUE_ARG1}"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/secure1"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/arg1" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/secure1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/copy1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_visibility_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/layout_Arg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_Arg1"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <TextView
+                        android:id="@+id/arg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/main_thin"
+                        android:maxEms="25"
+                        android:text="{ARG_2}"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/arg2_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/main_bold"
+                        android:maxEms="25"
+                        android:text="{VALUE_ARG2}"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/secure2"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/arg2"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/secure2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/copy2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_visibility_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/copy2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/arg2_value"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_content_copy_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/layout_Arg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_Arg2"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <TextView
+                        android:id="@+id/arg3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/main_thin"
+                        android:maxEms="25"
+                        android:text="{ARG_3}"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/arg3_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/main_bold"
+                        android:maxEms="25"
+                        android:text="{VALUE_ARG3}"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/secure3"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/arg3"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/secure3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/copy3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_visibility_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/copy3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/arg3_value"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_content_copy_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/layout_Arg4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_Arg3"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <TextView
+                        android:id="@+id/arg4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/main_thin"
+                        android:maxEms="25"
+                        android:text="{ARG_4}"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/arg4_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/main_bold"
+                        android:maxEms="25"
+                        android:text="{VALUE_ARG4}"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/secure4"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/arg4"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/secure4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/copy4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_visibility_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/copy4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/mainInfoOpen"
+                        android:clickable="true"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/forActionButtonMain"
+                        app:borderWidth="0px"
+                        app:elevation="0px"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/arg4_value"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_baseline_content_copy_10"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_close_or_open_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="29dp"
+            android:backgroundTint="@color/mainInfoWhite"
+            android:clickable="true"
+            android:contentDescription="button_close_or_open_content"
+            android:minHeight="48dp"
+            android:scaleType="center"
+            app:borderWidth="0px"
+            app:elevation="0px"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/img_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="29dp"
+            android:backgroundTint="@color/mainInfoWhite"
+            android:contentDescription="img_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:scaleType="center"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_close_or_open_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_baseline_language_24" />
+
+        <TextView
+            android:id="@+id/name_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/main_bold"
+            android:text="NameWebSite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/more_info_about_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:layout_marginBottom="29dp"
+            android:backgroundTint="@color/mainInfoWhite"
+            android:clickable="true"
+            android:contentDescription="moreInfo"
+            android:minHeight="48dp"
+            android:scaleType="center"
+            app:borderWidth="0px"
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_baseline_more_vert_24"
+            tools:ignore="TouchTargetSizeCheck" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:cardBackgroundColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/constraintLayout2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout2" />
+
+</android.support.constraint.ConstraintLayout>
