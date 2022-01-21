@@ -81,5 +81,4 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.insert(DBHelper.TABLE_INFORMATION,null,contentValues);
     }
-
 }

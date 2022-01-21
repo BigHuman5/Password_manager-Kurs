@@ -80,8 +80,13 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 //mainInfoViewHolder.CardViewforInformation.setV
                 //mainInfoViewHolder.constraintLayout.refreshDrawableState();
                 if(mainInfoViewHolder.CardViewforInformation.getVisibility() == View.GONE)
-                    mainInfoViewHolder.CardViewforInformation.setVisibility(View.VISIBLE);
-                else mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
+                {
+                  mainInfoViewHolder.CardViewforInformation.setVisibility(View.VISIBLE);
+                }
+                else 
+                {
+                   mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
+                }
 
                 mainInfoInformationList = stringsProject.getListMainInformation(position);
                 //

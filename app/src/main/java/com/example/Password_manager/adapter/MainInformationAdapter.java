@@ -29,6 +29,7 @@ public class MainInformationAdapter extends RecyclerView.Adapter<MainInformation
     public MainInformationViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View MainInformationItems = LayoutInflater.from(context).inflate(R.layout.maininfo_information,viewGroup,false);
         return new MainInformationViewHolder(MainInformationItems);
+
     }
 
     @Override
