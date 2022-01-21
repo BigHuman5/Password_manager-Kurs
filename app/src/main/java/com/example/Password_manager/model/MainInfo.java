@@ -5,26 +5,23 @@ public class MainInfo {
 
 
     /*For All*/
+    int type;
+    int position;
+
     String nameContent;
 
-    int type;
-    Boolean favorite;
-
     String arg1;
+
+
+    Boolean favorite;
      /*            */
 
-    public MainInfo(String nameContent, int type, Boolean favorite,String arg1) {
-        this.nameContent = nameContent;
+    public MainInfo(int type,int position, String nameContent, String arg1, Boolean favorite) {
+        this.position = position;
         this.type = type;
-        this.favorite = favorite;
-    }
-
-    public String getNameContent() {
-        return nameContent;
-    }
-
-    public void setNameContent(String nameContent) {
         this.nameContent = nameContent;
+        this.arg1 = arg1;
+        this.favorite = favorite;
     }
 
     public int getType() {
@@ -35,12 +32,12 @@ public class MainInfo {
         this.type = type;
     }
 
-    public Boolean getFavorite() {
-        return favorite;
+    public int getPosition() {
+        return position;
     }
 
-    public void setFavorite(Boolean favorite) {
-        this.favorite = favorite;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public String getArg1() {
@@ -49,5 +46,22 @@ public class MainInfo {
 
     public void setArg1(String arg1) {
         this.arg1 = arg1;
+    }
+
+    public String getNameContent() {
+        return nameContent;
+    }
+
+    public void setNameContent(String nameContent) {
+        this.nameContent = nameContent;
+    }
+
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
     }
 }

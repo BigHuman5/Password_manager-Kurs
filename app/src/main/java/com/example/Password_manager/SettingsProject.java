@@ -8,7 +8,7 @@ public class SettingsProject {
     }
 
     private void definitionLanguage() {
-        language = 1;
+        language = 0;
     }
 
     public int getLanguage() {
