@@ -2,22 +2,24 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newnoteActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/AddNewItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
+            android:contentDescription="@string/alter_add"
             app:backgroundTint="@color/iris_100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_add_24"
-            android:contentDescription="@string/alter_add" />
+            app:srcCompat="@drawable/ic_baseline_add_24" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,18 +76,18 @@
                     android:clickable="true"
                     android:contentDescription="@string/alter_menu"
                     app:backgroundTint="@color/iris_100"
-                    app:elevation="0dp"
                     app:borderWidth="0px"
+                    app:elevation="0dp"
                     app:fabCustomSize="56dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/TitleInAddNewItem"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:maxImageSize="32dp"
                     app:srcCompat="@drawable/menu_white" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/TitleInAddNewItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"

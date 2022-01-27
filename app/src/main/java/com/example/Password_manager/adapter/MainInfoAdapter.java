@@ -1,43 +1,37 @@
 package com.example.Password_manager.adapter;
 
-import android.app.Activity;
+import android.arch.lifecycle.LifecycleObserver;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.Password_manager.ButtonMainActivity;
-import com.example.Password_manager.MainActivity;
+import com.example.Password_manager.Button.ButtonMainActivity;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;
+import com.example.Password_manager.category.parametersField;
 import com.example.Password_manager.model.MainInfo;
 import com.example.Password_manager.model.MainInformation;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainInfoViewHolder>{
+public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainInfoViewHolder> implements LifecycleObserver {
 
     Context context;
     List<MainInfo> MainInfoList;
     List<MainInformation> mainInfoInformationList;
     StringsProject stringsProject;
     SettingsProject settingsProject;
+    boolean work = false;
+    int work1 = 0;
 
     public MainInfoAdapter(Context context, List<MainInfo> mainInfoList) {
         this.context = context;
@@ -53,13 +47,13 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
 
     @Override
     public void onBindViewHolder(@NonNull MainInfoViewHolder mainInfoViewHolder, int i) {
-        ButtonMainActivity buttonMainActivity = new ButtonMainActivity();
         settingsProject = new SettingsProject();
         int language = settingsProject.getLanguage();
         stringsProject = new StringsProject(language);
         String visualProtectionText = "*****";
-
         int position = mainInfoViewHolder.getAdapterPosition();
+        //MainActivity.getGetMainInfoRecycler().removeAllViews();
+        System.out.println(position);
         mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
 
         mainInfoViewHolder.name_content.setText(MainInfoList.get(i).getNameContent());
@@ -69,30 +63,33 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
         }
         mainInfoViewHolder.button_close_or_open_content.setOnClickListener(new View.OnClickListener() {
             @Override
+            //@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
             public void onClick(View v){
-                /*try {
-                    mainInfoViewHolder.CardViewforInformation.removeViewAt(4);
-                } catch (Exception e) {
-                    System.out.println("Произошло ещё какое-то исключение");
-                    System.out.println(mainInfoViewHolder.CardViewforInformation.ind);
-                }*/
-
-                //mainInfoViewHolder.CardViewforInformation.setV
-                //mainInfoViewHolder.constraintLayout.refreshDrawableState();
+                mainInfoInformationList = stringsProject.getListMainInformation(position);
+                //
+                parametersField parametersField = new parametersField(mainInfoInformationList.get(0).getType());
+                boolean secure[] = parametersField.getSecureField();
+                boolean copy[] = parametersField.getCopyField();
+                System.out.println(position);
                 if(mainInfoViewHolder.CardViewforInformation.getVisibility() == View.GONE)
                 {
+                    if(getWork1() != 0) notifyItemChanged(getWork1());
+                    setWork1(position);
+
+                    System.out.println("CLose");
                   mainInfoViewHolder.CardViewforInformation.setVisibility(View.VISIBLE);
                 }
                 else 
                 {
+                    setWork1(0);
+                    notifyItemChanged(position,null);
+                    System.out.println("Open");
                    mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
                 }
-
-                mainInfoInformationList = stringsProject.getListMainInformation(position);
                 //
                 mainInfoViewHolder.NameArg1.setText(mainInfoInformationList.get(0).getNameArg1());
                 /*Обработка визуальной защиты данных*/
-                if(mainInfoInformationList.get(0).getSecure1() == 1)
+                if(secure[0])
                 {
                     mainInfoViewHolder.Arg1.setText(visualProtectionText);
                 }
@@ -105,7 +102,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 if(mainInfoInformationList.get(0).getArg2() != null)
                 {
                     mainInfoViewHolder.NameArg2.setText(mainInfoInformationList.get(0).getNameArg2());
-                    if(mainInfoInformationList.get(0).getSecure2() == 1)
+                    if(secure[1])
                     {
                         mainInfoViewHolder.Arg2.setText(visualProtectionText);
                     }
@@ -120,7 +117,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 if(mainInfoInformationList.get(0).getNameArg3() != null)
                 {
                     mainInfoViewHolder.NameArg3.setText(mainInfoInformationList.get(0).getNameArg3());
-                    if(mainInfoInformationList.get(0).getSecure3() == 1)
+                    if(secure[2])
                     {
                         mainInfoViewHolder.Arg3.setText(visualProtectionText);
                     }
@@ -135,7 +132,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 if(mainInfoInformationList.get(0).getArg4() != null)
                 {
                     mainInfoViewHolder.NameArg4.setText(mainInfoInformationList.get(0).getNameArg4());
-                    if(mainInfoInformationList.get(0).getSecure4() == 1)
+                    if(secure[3])
                     {
                         mainInfoViewHolder.Arg4.setText(visualProtectionText);
                     }
@@ -147,7 +144,8 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 }
                 else mainInfoViewHolder.layout_Arg4.setVisibility(View.GONE);
                 /*              */
-                buttonMainActivity.secure(mainInfoViewHolder,visualProtectionText,mainInfoInformationList);
+                System.out.println(mainInfoViewHolder.Arg1.getText());
+                ButtonMainActivity.secure(mainInfoViewHolder,visualProtectionText,mainInfoInformationList);
             }
 
         });
@@ -160,7 +158,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
 
     public static final class MainInfoViewHolder extends RecyclerView.ViewHolder
     {
-        private View constraintLayout;
+        private ConstraintLayout constraintLayout;
 
         private View layout_Arg1;
         private View layout_Arg2;
@@ -193,10 +191,11 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
         private FloatingActionButton copy3;
         private FloatingActionButton copy4;
 
+
         public MainInfoViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            constraintLayout = itemView.findViewById(R.id.constraintLayout2);
+            constraintLayout = itemView.findViewById(R.id.InformationContent);
 
             layout_Arg1 = itemView.findViewById(R.id.layout_Arg1);
             layout_Arg2 = itemView.findViewById(R.id.layout_Arg2);
@@ -205,7 +204,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
 
             button_close_or_open_content = itemView.findViewById(R.id.button_close_or_open_content);
             img_content = itemView.findViewById(R.id.img_content);
-            name_content = itemView.findViewById(R.id.name_content);
+            name_content = itemView.findViewById(R.id.name_category);
 
             more_info_about_content = itemView.findViewById(R.id.more_info_about_content);
             CardViewforInformation = itemView.findViewById(R.id.cardviewforinformation);
@@ -287,6 +286,22 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
         public FloatingActionButton getCopy4() {
             return copy4;
         }
+    }
+
+    public boolean isWork() {
+        return work;
+    }
+
+    public void setWork(boolean work) {
+        this.work = work;
+    }
+
+    public int getWork1() {
+        return work1;
+    }
+
+    public void setWork1(int work1) {
+        this.work1 = work1;
     }
 }
 

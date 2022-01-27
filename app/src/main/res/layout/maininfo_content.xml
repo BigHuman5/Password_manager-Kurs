@@ -2,12 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/InformationContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/mainInfoWhite">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/FieldWithNameCategoryList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +27,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="cardviewforinformation"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/mainInfoWhite"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -442,7 +443,7 @@
             app:srcCompat="@drawable/ic_baseline_language_24" />
 
         <TextView
-            android:id="@+id/name_content"
+            android:id="@+id/name_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -483,9 +484,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         app:cardBackgroundColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="@id/FieldWithNameCategoryList"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout2" />
+        app:layout_constraintStart_toStartOf="@id/FieldWithNameCategoryList"
+        app:layout_constraintTop_toBottomOf="@id/FieldWithNameCategoryList" />
 
 </android.support.constraint.ConstraintLayout>

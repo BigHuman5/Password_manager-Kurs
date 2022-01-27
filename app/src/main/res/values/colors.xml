@@ -13,4 +13,6 @@
     <color name="mainInfoOpen">#C4C4C4</color>
 
     <color name="forActionButtonMain">#666666</color>
+
+    <color name="errorText">#E53935</color>
 </resources>

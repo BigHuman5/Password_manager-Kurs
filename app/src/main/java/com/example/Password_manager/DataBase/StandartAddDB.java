@@ -14,15 +14,15 @@ public class StandartAddDB {
 
         ContentValues contentValues = new ContentValues(); // Для удобной работы с бд
 
-        contentValues.put(DBHelper.KEY_ID,0);
-        contentValues.put(DBHelper.KEY_TYPE,0);
-        contentValues.put(DBHelper.KEY_NAME,"Secret key");
-        contentValues.put(DBHelper.KEY_FAVORITE,false);
+        contentValues.put(DBHelper.getKeyId(),0);
+        contentValues.put(DBHelper.getKeyType(),0);
+        contentValues.put(DBHelper.getKEY_1ArgValue(),"Secret key");
+        contentValues.put(DBHelper.getKeyFavorite(),false);
 
-        Log.d("mLog2","ID = "+contentValues.get(DBHelper.KEY_ID)
-                +"| Type = "+contentValues.get(DBHelper.KEY_TYPE)
-                +"| Name = "+contentValues.get(DBHelper.KEY_FAVORITE));
-        db.insert(DBHelper.TABLE_INFORMATION,null,contentValues);
+        Log.d("mLog2","ID = "+contentValues.get(DBHelper.getKeyId())
+                +"| Type = "+contentValues.get(DBHelper.getKeyType())
+                +"| Name = "+contentValues.get(DBHelper.getKEY_1ArgValue()));
+        db.insert(DBHelper.getTableName(),null,contentValues);
 
     }
 }
