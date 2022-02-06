@@ -1,4 +1,4 @@
-package com.example.Password_manager;
+package com.example.Password_manager.Notes;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.Password_manager.Button.ButtonAddNewNote;
-import com.example.Password_manager.DataBase.DBHelper;
-import com.example.Password_manager.Notes.NewNoteAdapter;
-import com.example.Password_manager.adapter.MainInfoAdapter;
+import com.example.Password_manager.R;
+import com.example.Password_manager.SettingsProject;
+import com.example.Password_manager.StringsProject;
 import com.example.Password_manager.model.Category;
 
 import java.util.ArrayList;

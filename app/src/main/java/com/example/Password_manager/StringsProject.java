@@ -20,6 +20,7 @@ public class StringsProject {
     private String[] categoryFilterTitle;
     private String[] categoryForAddNewNote;
     private static String[][] informationTitle = new String[HowType][];
+    private static String[][] addNewItem = new String[HowType][];
     private String[] textInMainActivity = new String[howTextsInMainActivity];
 
     private DBHelper dbHelper;
@@ -49,6 +50,7 @@ public class StringsProject {
             categoryList.add(new Category(i,categoryForAddNewNote[i]));
         return categoryList;
     }
+
 
     public List<MainInfo> getListMainInfo()
     {
@@ -220,7 +222,7 @@ public class StringsProject {
         }
     }
 
-    private void definitionInformationTitle(int language) {
+    private static void definitionInformationTitle(int language) {
         informationTitle[0] = new String[3];
         informationTitle[1] = new String[6];
         informationTitle[2] = new String[6];
@@ -245,6 +247,64 @@ public class StringsProject {
                 informationTitle[1][0] = "Login";
                 informationTitle[1][1] = "Password";
                 informationTitle[1][2] = "Comment";
+                break;
+            }
+            default: System.exit(3);
+        }
+    }
+
+    public static void definitionTextForAddItem(int language,int numberCategory)
+    {
+        addNewItem[0] = new String[informationTitle[0].length+1];
+        addNewItem[1] = new String[informationTitle[1].length+2];
+        addNewItem[2] = new String[informationTitle[2].length+2];
+        int numberForFor = 0;
+        definitionInformationTitle(language);
+        switch (language) {
+            case 0: //Russian
+            {
+                switch (numberCategory)
+                {
+                    case 0: //Website
+                    {
+                        addNewItem[0][0] = "Адрес";
+                        for (int i = 1; i < addNewItem[0].length; i++) {
+                            System.out.println("DOP: " + i + " | " + numberForFor + " | " + addNewItem[0].length + " | " + informationTitle[0].length);
+                            addNewItem[0][i] = informationTitle[0][numberForFor];
+                            numberForFor++;
+                        }
+                        numberForFor = 0;
+                        break;
+                    }
+                    case 1: //Card
+                    {
+                        addNewItem[1][0] = "Название";
+                        addNewItem[1][1] = "Тип карты";
+                        for (int i = 2; i < addNewItem[1].length; i++) {
+                            System.out.println("DOP: "+i+" | "+numberForFor+" | "+addNewItem[1].length+" | "+informationTitle[1].length);
+                            addNewItem[1][i] = informationTitle[1][numberForFor];
+                            numberForFor++;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case 1: //English
+            {
+                //Website
+                addNewItem[0][0] = "Адрес";
+                for (int i = addNewItem[0].length; i < informationTitle[0].length; i++) {
+                    addNewItem[0][i] = informationTitle[0][numberForFor];
+                    numberForFor++;
+                }
+                //Card
+                addNewItem[1][0] = "Название";
+                addNewItem[1][1] = "Тип карты";
+                for (int i = addNewItem[1].length; i < informationTitle[1].length; i++) {
+                    addNewItem[1][i] = informationTitle[1][numberForFor];
+                    numberForFor++;
+                }
                 break;
             }
             default: System.exit(3);
@@ -291,5 +351,10 @@ public class StringsProject {
 
     public static int getHowType() {
         return HowType;
+    }
+
+    public static String[] getAddNewItem(int language, int type) {
+        definitionTextForAddItem(language,type);
+        return addNewItem[type];
     }
 }

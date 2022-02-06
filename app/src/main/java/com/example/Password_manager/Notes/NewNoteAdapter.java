@@ -7,12 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Password_manager.Button.ButtonAddNewNote;
-import com.example.Password_manager.NewNoteActivity;
 import com.example.Password_manager.R;
+import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;
 import com.example.Password_manager.model.Category;
 
@@ -41,30 +41,48 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
     @Override
     public NewNoteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View NewNoteItems;
-        if(typeCategory.equals("")) {
+        if(typeCategory.equals("")) { //Если прилетел пустой ответ, тоесть тип не выбрал. Отображается выбор типа
             NewNoteItems = LayoutInflater.from(context).inflate(R.layout.selectcategory_addnewnote, viewGroup, false);
-            System.out.println("Typecategory null ну это понятно!!");
         }
-        else{
+        else{ //Если прилетел ответ, тоесть тип выбран. Отображается меню с заполнением информации
             NewNoteItems = LayoutInflater.from(context).inflate(R.layout.enterinfo_addnewnote,viewGroup,false);
-            System.out.println("Typecategory null НЕЖДАНЧИК!!");
         }
         return new NewNoteAdapter.NewNoteViewHolder(NewNoteItems);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NewNoteViewHolder newNoteViewHolder, int i) {
-        if(typeCategory.equals("")) {
+        if(typeCategory.equals("")) { //Если прилетел пустой ответ, тоесть тип не выбрал. Отображается выбор типа
             newNoteViewHolder.nameCategory.setText(categoryList.get(i).getNameCategory());
             System.out.println(i);
+            switch (i) { /* Подстановка изображения в типы категорий. */
+                case 0: { // Изображение веб сайта
+                    newNoteViewHolder.imageView.setImageResource(R.drawable.ic_baseline_website_24);
+                    break;
+                }
+                case 1: // Изображение добавление карты
+                {
+                    newNoteViewHolder.imageView.setImageResource(R.drawable.ic_baseline_add_card_24);
+                    break;
+                }
+                default: // Выкидывает картинку сайт при ошибке.
+                {
+                    newNoteViewHolder.imageView.setImageResource(R.drawable.ic_baseline_website_24);
+                    break;
+                }
+            }
             int position = newNoteViewHolder.getAdapterPosition();
             ButtonAddNewNote.selectCategoryAdd(position);
         }
         else
         {
+            newNoteViewHolder.errorText.setVisibility(View.INVISIBLE);
+            newNoteViewHolder.inputText.setText("");
             numberCategory = getNumberCategory();
-            informationTitle = StringsProject.getInformationTitle(numberCategory);
+            informationTitle = StringsProject.getAddNewItem(getLanguage(),numberCategory);
+            //informationTitle = StringsProject.getInformationTitle(numberCategory);
             newNoteViewHolder.titleText.setText(informationTitle[i]);
+            typesNotes typesNotes = new typesNotes(numberCategory,i);
         }
     }
 
@@ -89,14 +107,20 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         return NumberCategory;
     }
 
+    protected int getLanguage()
+    {
+        return SettingsProject.getLanguage();
+    }
+
     public static final class NewNoteViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nameCategory;
         private static ConstraintLayout layoutSelectCategory;
         private static ConstraintLayout layoutAddCategory;
         private TextView titleText;
-        private EditText enterItem;
         private TextView errorText;
+        private ImageView imageView;
+        private static TextView inputText;
 
         String typeCategory;
 
@@ -107,12 +131,13 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             if(typeCategory.equals(""))
             {
                 layoutSelectCategory = itemView.findViewById(R.id.layoutSelectCategory);
+                imageView = itemView.findViewById(R.id.img_content);
                 System.out.println("!!!Typecategory null ну это понятно!!");
             }
             else
             {
                 titleText = itemView.findViewById(R.id.titleText);
-                enterItem = itemView.findViewById(R.id.enterText);
+                inputText = itemView.findViewById(R.id.inputText);
                 errorText = itemView.findViewById(R.id.errorText);
 
                 layoutAddCategory = itemView.findViewById(R.id.layoutAddCategory);
@@ -122,6 +147,14 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
 
         public TextView getNameCategory() {
             return nameCategory;
+        }
+
+        public static TextView getInputText() {
+            return inputText;
+        }
+
+        public static ConstraintLayout getLayoutAddCategory() {
+            return layoutAddCategory;
         }
 
         public void setNameCategory(TextView nameCategory) {

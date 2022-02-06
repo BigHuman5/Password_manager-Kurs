@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.example.Password_manager.DataBase.DBHelper;
 import com.example.Password_manager.MainActivity;
-import com.example.Password_manager.NewNoteActivity;
+import com.example.Password_manager.Notes.NewNoteActivity;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;

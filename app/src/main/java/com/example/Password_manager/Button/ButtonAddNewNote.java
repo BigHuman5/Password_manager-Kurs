@@ -5,12 +5,8 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.Password_manager.MainActivity;
-import com.example.Password_manager.NewNoteActivity;
+import com.example.Password_manager.Notes.NewNoteActivity;
 import com.example.Password_manager.Notes.NewNoteAdapter;
-
-import com.example.Password_manager.Notes.NewNoteAdapter;
-import com.example.Password_manager.adapter.MainActivityAdapter;
-import com.example.Password_manager.adapter.MainInfoAdapter;
 
 public class ButtonAddNewNote {
 
