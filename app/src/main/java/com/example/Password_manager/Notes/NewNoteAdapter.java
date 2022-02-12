@@ -77,7 +77,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         else
         {
             newNoteViewHolder.errorText.setVisibility(View.INVISIBLE);
-            newNoteViewHolder.inputText.setText("");
+            NewNoteViewHolder.inputText.setText("");
             numberCategory = getNumberCategory();
             informationTitle = StringsProject.getAddNewItem(getLanguage(),numberCategory);
             //informationTitle = StringsProject.getInformationTitle(numberCategory);
@@ -166,7 +166,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         }
 
         public void setLayoutSelectCategory(ConstraintLayout layoutSelectCategory) {
-            this.layoutSelectCategory = layoutSelectCategory;
+            NewNoteViewHolder.layoutSelectCategory = layoutSelectCategory;
         }
     }
 }

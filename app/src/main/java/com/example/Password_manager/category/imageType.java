@@ -2,13 +2,19 @@ package com.example.Password_manager.category;
 
 public class imageType {
 
-    int type;
-    String imagesrc;
-    String name;
+    private int imagesrc;
+    private String name;
 
-    public imageType(int type, String imagesrc, String name) {
-        this.type = type;
+    public imageType(int imagesrc, String name) {
         this.imagesrc = imagesrc;
         this.name = name;
+    }
+
+    public int getImagesrc() {
+        return imagesrc;
+    }
+
+    public String getName() {
+        return name;
     }
 }

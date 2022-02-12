@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.Password_manager.DataBase.DBHelper;
+import com.example.Password_manager.category.imageType;
 import com.example.Password_manager.model.Category;
 import com.example.Password_manager.model.MainInfo;
 import com.example.Password_manager.model.MainInformation;
@@ -172,6 +173,28 @@ public class StringsProject {
         return mainInformationList;
     }
 
+    public static List<imageType> getListNamedAddItems(int numberCategory)
+    {
+        List<imageType> ListNamedAddItems = new ArrayList<>();
+        if(numberCategory == 0) {
+            ListNamedAddItems.add(new imageType(R.drawable.vk, "vk.com"));
+            ListNamedAddItems.add(new imageType(R.drawable.facebook, "facebook.com"));
+        }
+        else if(numberCategory == 1)
+        {
+            ListNamedAddItems.add(new imageType(R.drawable.mastercard,"MasterCard"));
+            ListNamedAddItems.add(new imageType(R.drawable.mastercard,"Visa"));
+        }
+        else
+        {
+            System.out.println("StringsProject getListNamedAddItems");
+            System.exit(3);
+        }
+        return ListNamedAddItems;
+    }
+
+
+
     public void definitionCategoryFilterTitle(int language) {
         switch (language) {
             case 0: //Russian
@@ -194,7 +217,11 @@ public class StringsProject {
                 };
                 break;
             }
-            default: System.exit(3);
+            default:
+            {
+                System.out.println("StringsProject definitionCategoryFilterTitle");
+                System.exit(3);
+            }
         }
     }
 
@@ -249,7 +276,10 @@ public class StringsProject {
                 informationTitle[1][2] = "Comment";
                 break;
             }
-            default: System.exit(3);
+            default: {
+                System.out.println("StringsProject definitionInformationTitle");
+                System.exit(3);
+            }
         }
     }
 
@@ -307,7 +337,11 @@ public class StringsProject {
                 }
                 break;
             }
-            default: System.exit(3);
+            default: {
+                System.out.println("StringsProject definitionTextForAddItem");
+                System.exit(3);
+                break;
+            }
         }
     }
 
@@ -324,7 +358,11 @@ public class StringsProject {
                 textInMainActivity[0] = "Main";
                 break;
             }
-            default: break;
+            default: {
+                System.out.println("StringsProject definitionTextInMainActivity");
+                System.exit(3);
+                break;
+            }
         }
     }
 
