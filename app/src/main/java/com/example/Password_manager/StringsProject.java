@@ -85,8 +85,6 @@ public class StringsProject {
 
         cursor.close();
         dbHelper.close();
-
-        //mainInfoList.add(new MainInfo(1,"mail.ru","l",false));
         return mainInfoList;
     }
 
@@ -99,10 +97,13 @@ public class StringsProject {
         database = dbHelper.getWritableDatabase();
         contentValues = new ContentValues(); // Для удобной работы с бд
 
+        String title = new String();
+
 
 
         Cursor cursor = database.query(DBHelper.getTableName(),null,null,null,null,null,null);
         if(cursor.moveToFirst()) {
+
             int idIndex = cursor.getColumnIndex(DBHelper.getKeyId());
             int typeIndex = cursor.getColumnIndex(DBHelper.getKeyType());
 
@@ -116,35 +117,48 @@ public class StringsProject {
             int arg8ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_8ArgValue());
             int arg9ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_9ArgValue());
             int arg10ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_10ArgValue());
+            System.out.println(arg4ValueIndex);
             do {
                 if(position == cursor.getInt(idIndex))
                 {
-                    Log.d("renderingMainInformation","ID: "+cursor.getInt(idIndex)
+
+                    String logString = "ID: "+cursor.getInt(idIndex)
                             +"| Type: "+cursor.getInt(typeIndex)
                             +"| Number_Title: "+cursor.getInt(typeIndex)
                             +"| Position: "+position
-                            +"| idIndex: "+cursor.getInt(idIndex)
-                            +"| name_Title1: "+ informationTitle[cursor.getInt(typeIndex)][0]
-                            +"| arg 1: "+cursor.getString(arg1ValueIndex)
-                            +"| name_Title2: "+ informationTitle[cursor.getInt(typeIndex)][1]
-                            +"| arg 2: "+cursor.getString(arg2ValueIndex)
-                            +"| name_Title3: "+ informationTitle[cursor.getInt(typeIndex)][2]
-                            +"| arg 3: "+cursor.getString(arg3ValueIndex)
-                            +"| name_Title4: "+ informationTitle[cursor.getInt(typeIndex)][3]
-                            +"| arg 4: "+cursor.getString(arg4ValueIndex)
-                            +"| name_Title5: "+ informationTitle[cursor.getInt(typeIndex)][4]
-                            +"| arg 5: "+cursor.getString(arg5ValueIndex)
-                            +"| name_Title6: "+ informationTitle[cursor.getInt(typeIndex)][5]
-                            +"| arg 6: "+cursor.getString(arg6ValueIndex)
-                            +"| name_Title7: "+ informationTitle[cursor.getInt(typeIndex)][6]
-                            +"| arg 7: "+cursor.getString(arg7ValueIndex)
-                            +"| name_Title8: "+ informationTitle[cursor.getInt(typeIndex)][7]
-                            +"| arg 8: "+cursor.getString(arg8ValueIndex)
-                            +"| name_Title9: "+ informationTitle[cursor.getInt(typeIndex)][8]
-                            +"| arg 9: "+cursor.getString(arg9ValueIndex)
-                            +"| name_Title10: "+ informationTitle[cursor.getInt(typeIndex)][9]
-                            +"| arg 10: "+cursor.getString(arg10ValueIndex));
+                            +"| idIndex: "+cursor.getInt(idIndex);
 
+                    for(int i=0;i>=informationTitle.length;i++)
+                    {
+                        int p=0;
+                        switch (i){
+                            case 0: { p=arg1ValueIndex; break; }
+                            case 1: { p=arg2ValueIndex; break; }
+                            case 2: { p=arg3ValueIndex; break; }
+                            case 3: { p=arg4ValueIndex; break; }
+                            case 4: { p=arg5ValueIndex; break; }
+                            case 5: { p=arg6ValueIndex; break; }
+                            case 6: { p=arg7ValueIndex; break; }
+                            case 7: { p=arg8ValueIndex; break; }
+                            case 8: { p=arg9ValueIndex; break; }
+                            case 9: { p=arg10ValueIndex; break; }
+                            default: { p=arg1ValueIndex; break; }
+                        }
+                        logString += " | name_Title"+i+": "+informationTitle[cursor.getInt(typeIndex)][i]
+                                +"| arg"+i+": "+cursor.getString(p);
+                    }
+
+                    Log.d("getListMainInformation",logString);
+
+                    for(int i=0;i>=informationTitle.length;i++) {
+                        try{
+                            System.out.println(informationTitle[cursor.getInt(typeIndex)][i]);
+                        }
+                        catch (Exception e)
+                        {
+                            informationTitle[cursor.getInt(typeIndex)][i] = "0";
+                        }
+                    }
                     mainInformationList.add(0,new MainInformation(cursor.getInt(typeIndex),
                             informationTitle[cursor.getInt(typeIndex)][0],
                             informationTitle[cursor.getInt(typeIndex)][1],

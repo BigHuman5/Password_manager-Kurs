@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/header_newnoteActivity"
         android:layout_width="match_parent"
         android:layout_height="80sp"
         android:background="@color/iris_100"
@@ -35,7 +35,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/CheckNewItem"
+            android:id="@+id/buttonAddNewItem"
             android:layout_width="56dp"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"
@@ -43,6 +43,7 @@
             android:layout_marginEnd="12dp"
             android:clickable="true"
             android:contentDescription="@string/alter_menu"
+            android:visibility="visible"
             app:backgroundTint="@color/iris_100"
             app:borderWidth="0px"
             app:elevation="0dp"
@@ -66,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/header_newnoteActivity"
         app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

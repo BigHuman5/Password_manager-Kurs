@@ -21,14 +21,15 @@ import java.util.List;
 
 public class typesNotes {
 
+    private static AutoCompleteTextView mAutoCompleteAddressSite;
+    ImageView imageView;
+
     public typesNotes(int numberCategory, int numberField) {
         System.out.printf(numberCategory+" | "+numberField);
         switch (numberCategory)
         {
             case 0: // Website
             {
-                AutoCompleteTextView mAutoCompleteAddressSite;
-                ImageView imageView;
                 if(numberField == 0)
                 {
                     mAutoCompleteAddressSite = NewNoteAdapter.NewNoteViewHolder.getLayoutAddCategory().findViewById(R.id.autoCompleteTextView);
@@ -72,4 +73,9 @@ public class typesNotes {
             }
         }
     }
+
+    public static AutoCompleteTextView getmAutoCompleteAddressSite() {
+        return mAutoCompleteAddressSite;
+    }
 }
+

@@ -53,7 +53,6 @@ public class NameItemAdapter extends ArrayAdapter<imageType> {
         NameView = convertView.findViewById(R.id.standardNameView);
         ImgView = convertView.findViewById(R.id.img_nameItem);
             imageType imageType = getItem(position);
-            System.out.println("Test 58: " + NewNoteActivity.getCategory());
             if (imageType != null) {
                 NameView.setText(imageType.getName());
                 ImgView.setImageResource(imageType.getImagesrc());
@@ -90,7 +89,6 @@ public class NameItemAdapter extends ArrayAdapter<imageType> {
 
                 results.values = suggestions;
                 results.count = suggestions.size();
-                System.out.println("fdf: "+results.values+" | "+results.count);
                 return results;
             }
 

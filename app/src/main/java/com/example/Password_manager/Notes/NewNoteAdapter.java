@@ -1,8 +1,10 @@
 package com.example.Password_manager.Notes;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Password_manager.Button.ButtonAddNewNote;
+import com.example.Password_manager.Notes.model.Fields;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;
 import com.example.Password_manager.model.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteViewHolder> {
@@ -36,6 +40,11 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         informationTitle = StringsProject.getInformationTitle(numberCategory);
         System.out.println(numberCategory+" | "+StringsProject.getInformationTitleLength(numberCategory) + " Число");
     }
+
+    public TextView[][] f = new TextView[StringsProject.getInformationTitleLength(numberCategory)+200][2];
+
+    private ArrayList<Fields> fields = new ArrayList<Fields>();
+
 
     @NonNull
     @Override
@@ -74,15 +83,19 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             int position = newNoteViewHolder.getAdapterPosition();
             ButtonAddNewNote.selectCategoryAdd(position);
         }
-        else
+        else // Вывод окна с вводом данных
         {
-            newNoteViewHolder.errorText.setVisibility(View.INVISIBLE);
+            NewNoteViewHolder.errorText.setVisibility(View.INVISIBLE);
             NewNoteViewHolder.inputText.setText("");
             numberCategory = getNumberCategory();
             informationTitle = StringsProject.getAddNewItem(getLanguage(),numberCategory);
-            //informationTitle = StringsProject.getInformationTitle(numberCategory);
             newNoteViewHolder.titleText.setText(informationTitle[i]);
             typesNotes typesNotes = new typesNotes(numberCategory,i);
+            fields.add(new Fields(NewNoteViewHolder.getInputText(),NewNoteViewHolder.getErrorText()));
+            //f[i][0] = NewNoteViewHolder.getInputText(); // заполнение информации в массив для удобной работы с текстом.
+            //f[i][1] = NewNoteViewHolder.getErrorText(); // заполнение информации в массив для удобной работы с ошибками.
+            System.out.println("\n"+i+" | "+fields.get(i).getInputText().getText().toString()+" | "+fields.get(i).getErrorText().getText().toString());
+            System.out.println(NewNoteViewHolder.getLayoutAddCategory().findViewById(R.id.errorText).getContext().toString());
         }
     }
 
@@ -98,7 +111,6 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
 
     protected int getNumberCategory() {
         int NumberCategory = 0;
-        System.out.println(typeCategory+" Test");
             try {
                 NumberCategory = Integer.parseInt(typeCategory.trim());
             } catch (Exception e) {
@@ -112,15 +124,20 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         return SettingsProject.getLanguage();
     }
 
+    public ArrayList<Fields> getItems() {
+        return fields;
+    }
+
     public static final class NewNoteViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nameCategory;
         private static ConstraintLayout layoutSelectCategory;
         private static ConstraintLayout layoutAddCategory;
         private TextView titleText;
-        private TextView errorText;
+        private static TextView errorText;
         private ImageView imageView;
         private static TextView inputText;
+        private static FloatingActionButton addNewItem;
 
         String typeCategory;
 
@@ -132,16 +149,15 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             {
                 layoutSelectCategory = itemView.findViewById(R.id.layoutSelectCategory);
                 imageView = itemView.findViewById(R.id.img_content);
-                System.out.println("!!!Typecategory null ну это понятно!!");
+                System.out.println("NewNoteAdapter.NewNoteViewHolder зашёл в список с категориями");
             }
             else
             {
                 titleText = itemView.findViewById(R.id.titleText);
                 inputText = itemView.findViewById(R.id.inputText);
                 errorText = itemView.findViewById(R.id.errorText);
-
                 layoutAddCategory = itemView.findViewById(R.id.layoutAddCategory);
-                System.out.println("!!Typecategory null НЕЖДАНЧИК!!");
+                System.out.println("NewNoteAdapter.NewNoteViewHolder зашёл в список параметрами категорий");
             }
         }
 
@@ -151,6 +167,10 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
 
         public static TextView getInputText() {
             return inputText;
+        }
+
+        public static TextView getErrorText() {
+            return errorText;
         }
 
         public static ConstraintLayout getLayoutAddCategory() {
@@ -168,5 +188,6 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         public void setLayoutSelectCategory(ConstraintLayout layoutSelectCategory) {
             NewNoteViewHolder.layoutSelectCategory = layoutSelectCategory;
         }
+
     }
 }
