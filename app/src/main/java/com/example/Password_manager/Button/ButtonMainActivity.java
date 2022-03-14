@@ -88,53 +88,11 @@ public class ButtonMainActivity {
     }
     public static void addButton()
     {
-        StringsProject stringsProject = new StringsProject(SettingsProject.getLanguage());
-        List<MainInfo> mainInfoList = stringsProject.getListMainInfo();
-        System.out.println("На меня нажали!");
         MainActivityAdapter mainActivityAdapter = new MainActivityAdapter();
         mainActivityAdapter.getAddNewItem().setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {/*
-              System.out.println("На меня нажали и я зашёл в цикл!");
-               dbHelper = MainActivity.getDbHelper();
-               SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-               //List<MainInfo> MainInfoList = MainActivity.getMainInfoList();
-
-               ContentValues contentValues = new ContentValues(); // Для удобной работы с бд
-               contentValues.put(DBHelper.getKeyId(),mainInfoList.size()+1);
-               contentValues.put(DBHelper.getKeyPosition(),mainInfoList.size()+1);
-        /*contentValues.put(DBHelper.getKeyType(),1);
-        contentValues.put(DBHelper.getKeyName(),"twitter.com");
-        contentValues.put(DBHelper.getKeyFavorite(),false);
-
-        contentValues.put(DBHelper.getKEY_1ArgValue(),"Какая-то важная информация");
-        contentValues.put(DBHelper.getKEY_2ArgValue(),"Крутой пароль тут");
-        contentValues.put(DBHelper.getKEY_3ArgValue(),"Коммент");*/
-/*
-               contentValues.put(DBHelper.getKeyType(),2);
-               contentValues.put(DBHelper.getKeyName(),"Master Card");
-               contentValues.put(DBHelper.getKeyFavorite(),false);
-
-               contentValues.put(DBHelper.getKEY_1ArgValue(),"3521654597545487");
-               contentValues.put(DBHelper.getKEY_2ArgValue(),"02/24");
-               contentValues.put(DBHelper.getKEY_3ArgValue(),"5412");
-               contentValues.put(DBHelper.getKEY_4ArgValue(),"Evgef Erfdf");
-               contentValues.put(DBHelper.getKEY_5ArgValue(),"54874");
-               contentValues.put(DBHelper.getKEY_6ArgValue(),"Nice jock");
-
-
-               Log.d("mfd","ID = "+contentValues.get(DBHelper.getKeyId())
-                       +"| Type = "+contentValues.get(DBHelper.getKeyType())
-                       +"| Name = "+contentValues.get(DBHelper.getKeyName()));
-               database.insert(DBHelper.getTableName(),null,contentValues);
-*/
-               //context = MainActivity.getMainActivity().getContext();
-               //context = LayoutInflater.from(getContext()).inflate(R.layout.activity_main, parent, false);
-              // Activity activity = (Activity) context;
-               //MainActivity mainActivity = new MainActivity();
+           public void onClick(View v) {
                context = MainActivity.getContext();
                Intent intent = new Intent(context, NewNoteActivity.class);
-               //Activity activity = new Activity();
                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                context.startActivity(intent);
            }

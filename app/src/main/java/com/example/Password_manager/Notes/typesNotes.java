@@ -23,6 +23,7 @@ public class typesNotes {
 
     private static AutoCompleteTextView mAutoCompleteAddressSite;
     ImageView imageView;
+    private static int countNewNotes = 0;
 
     public typesNotes(int numberCategory, int numberField) {
         System.out.printf(numberCategory+" | "+numberField);
@@ -40,6 +41,7 @@ public class typesNotes {
                     NameItemAdapter nameItemAdapter;
                     nameItemAdapter = new NameItemAdapter(NewNoteActivity.getContext(),ListNamedAddItems);
                     mAutoCompleteAddressSite.setAdapter(nameItemAdapter);
+                    countNewNotes++;
                 }
                 else
                 {
@@ -59,6 +61,7 @@ public class typesNotes {
                     spinnerAdapter spinnerAdapter;
                     spinnerAdapter = new spinnerAdapter(NewNoteActivity.getContext(),ListNamedAddItems);
                     spinner.setAdapter(spinnerAdapter);
+                    countNewNotes++;
                 }
                 else
                 {
@@ -74,8 +77,14 @@ public class typesNotes {
         }
     }
 
+
+
     public static AutoCompleteTextView getmAutoCompleteAddressSite() {
         return mAutoCompleteAddressSite;
+    }
+
+    public static int getCountNewNotes() {
+        return countNewNotes;
     }
 }
 

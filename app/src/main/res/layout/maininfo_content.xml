@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_content"
+            app:layout_constraintTop_toBottomOf="@+id/MainInfo_imgContent"
             app:layout_constraintVertical_bias="0.0">
 
             <android.support.constraint.ConstraintLayout
@@ -425,7 +425,7 @@
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <ImageView
-            android:id="@+id/img_content"
+            android:id="@+id/MainInfo_imgContent"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="29dp"
@@ -435,6 +435,7 @@
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:scaleType="center"
+            android:visibility="visible"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_close_or_open_content"
@@ -452,7 +453,7 @@
             android:fontFamily="@font/main_bold"
             android:text="NameWebSite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_content"
+            app:layout_constraintStart_toEndOf="@+id/MainInfo_imgContent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 

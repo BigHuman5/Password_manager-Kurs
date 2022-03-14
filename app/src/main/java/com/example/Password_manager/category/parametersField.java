@@ -2,6 +2,8 @@ package com.example.Password_manager.category;
 
 import com.example.Password_manager.StringsProject;
 
+import java.util.Arrays;
+
 public class parametersField {
     private boolean[] secureField = new boolean[StringsProject.getHowType()];
     private boolean[] copyField = new boolean[StringsProject.getHowType()];
@@ -9,7 +11,7 @@ public class parametersField {
     public parametersField(int type) {
         switch (type)
         {
-            case 1:
+            case 0:
             {
                 secureField[0] = false; // Логин
                 copyField[0] = false;
@@ -17,11 +19,11 @@ public class parametersField {
                 secureField[1] = true; // Пароль
                 copyField[1] = true;
                 //
-                secureField[2] = false; // Комментарий
-                copyField[2] = true;
+                secureField[2] = true; // Комментарий
+                copyField[2] = false;
                 break;
             }
-            case 2:
+            case 1:
             {
                 secureField[0] = true; // Номер карты
                 copyField[0] = true;
@@ -44,12 +46,14 @@ public class parametersField {
             }
             default:
             {
+                System.out.println("Break! "+type);
                 break;
             }
         }
     }
 
     public boolean[] getSecureField() {
+        System.out.println("Fd: "+ Arrays.toString(secureField));
         return secureField;
     }
 

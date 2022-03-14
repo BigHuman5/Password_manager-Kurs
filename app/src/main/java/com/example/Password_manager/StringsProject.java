@@ -12,6 +12,7 @@ import com.example.Password_manager.model.MainInfo;
 import com.example.Password_manager.model.MainInformation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StringsProject {
@@ -159,6 +160,7 @@ public class StringsProject {
                             informationTitle[cursor.getInt(typeIndex)][i] = "0";
                         }
                     }
+
                     mainInformationList.add(0,new MainInformation(cursor.getInt(typeIndex),
                             informationTitle[cursor.getInt(typeIndex)][0],
                             informationTitle[cursor.getInt(typeIndex)][1],
@@ -264,7 +266,8 @@ public class StringsProject {
     }
 
     private static void definitionInformationTitle(int language) {
-        informationTitle[0] = new String[3];
+        List<String> informationTitleList = new ArrayList<>();
+        informationTitle[0] = new String[10];
         informationTitle[1] = new String[6];
         informationTitle[2] = new String[6];
         switch (language) {
@@ -302,6 +305,7 @@ public class StringsProject {
         addNewItem[0] = new String[informationTitle[0].length+1];
         addNewItem[1] = new String[informationTitle[1].length+2];
         addNewItem[2] = new String[informationTitle[2].length+2];
+        int[] numberStartFor = new int[getHowType()];
         int numberForFor = 0;
         definitionInformationTitle(language);
         switch (language) {
@@ -311,24 +315,20 @@ public class StringsProject {
                 {
                     case 0: //Website
                     {
-                        addNewItem[0][0] = "Адрес";
-                        for (int i = 1; i < addNewItem[0].length; i++) {
-                            System.out.println("DOP: " + i + " | " + numberForFor + " | " + addNewItem[0].length + " | " + informationTitle[0].length);
-                            addNewItem[0][i] = informationTitle[0][numberForFor];
-                            numberForFor++;
-                        }
-                        numberForFor = 0;
+                        addNewItem[numberCategory][0] = "Адрес";
+                        numberStartFor[numberCategory] = 1;
                         break;
                     }
                     case 1: //Card
                     {
-                        addNewItem[1][0] = "Название";
-                        addNewItem[1][1] = "Тип карты";
-                        for (int i = 2; i < addNewItem[1].length; i++) {
-                            System.out.println("DOP: "+i+" | "+numberForFor+" | "+addNewItem[1].length+" | "+informationTitle[1].length);
-                            addNewItem[1][i] = informationTitle[1][numberForFor];
-                            numberForFor++;
-                        }
+                        addNewItem[numberCategory][0] = "Название";
+                        addNewItem[numberCategory][1] = "Тип карты";
+                        numberStartFor[numberCategory] = 2;
+                        break;
+                    }
+                    default: {
+                        System.out.println("StringsProject definitionTextInMainActivity"+language+" | "+numberCategory);
+                        System.exit(3);
                         break;
                     }
                 }
@@ -336,28 +336,43 @@ public class StringsProject {
             }
             case 1: //English
             {
-                //Website
-                addNewItem[0][0] = "Адрес";
-                for (int i = addNewItem[0].length; i < informationTitle[0].length; i++) {
-                    addNewItem[0][i] = informationTitle[0][numberForFor];
-                    numberForFor++;
+                switch (numberCategory)
+                {
+                    case 0: //Website
+                    {
+                        addNewItem[numberCategory][0] = "Address";
+                        numberStartFor[numberCategory] = 1;
+                        break;
+                    }
+                    case 1: //Card
+                    {
+                        addNewItem[numberCategory][0] = "Name";
+                        addNewItem[numberCategory][1] = "Type";
+                        numberStartFor[numberCategory] = 2;
+                        break;
+                    }
+                    default: {
+                        System.out.println("StringsProject definitionTextInMainActivity"+language+" | "+numberCategory);
+                        System.exit(3);
+                        break;
+                    }
                 }
-                //Card
-                addNewItem[1][0] = "Название";
-                addNewItem[1][1] = "Тип карты";
-                for (int i = addNewItem[1].length; i < informationTitle[1].length; i++) {
-                    addNewItem[1][i] = informationTitle[1][numberForFor];
-                    numberForFor++;
-                }
-                break;
             }
             default: {
-                System.out.println("StringsProject definitionTextForAddItem");
+                System.out.println("StringsProject definitionTextInMainActivity"+language);
                 System.exit(3);
                 break;
             }
         }
-    }
+            for (int i = numberStartFor[numberCategory]; i <= addNewItem[numberCategory].length; i++) {
+                try {
+
+                    addNewItem[numberCategory][i] = informationTitle[numberCategory][numberForFor];
+                } catch (Exception ignored) {
+                }
+                numberForFor++;
+            }
+        }
 
     private void definitionTextInMainActivity(int language) {
         switch (language) {
@@ -401,12 +416,30 @@ public class StringsProject {
         return informationTitle[element];
     }
 
-    public static int getHowType() {
+    public static int getCountInformationTitle(int type) // Для определения количества строк в добавлениее информации
+    {
+        int countInformationTitle = 0;
+        for(int numberForFor=0;numberForFor<=getHowType();numberForFor++)
+        {
+            try {
+                if(!informationTitle[type][numberForFor].equals("null"))
+                {
+                    countInformationTitle++;
+                }
+            }
+            catch (Exception ignore) { }
+
+        }
+        return countInformationTitle;
+    }
+
+    public static int getHowType() { // Тип категории
         return HowType;
     }
 
     public static String[] getAddNewItem(int language, int type) {
         definitionTextForAddItem(language,type);
+        System.out.println("GEASDS: "+type+" | "+ Arrays.toString(addNewItem[type]));
         return addNewItem[type];
     }
 }

@@ -1,6 +1,5 @@
 package com.example.Password_manager.Notes;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -32,12 +31,15 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
 
     int numberCategory;
 
+    private int countInformationTitle = 0;
+
     public NewNoteAdapter(Context context, List<Category> categoryList, String typeCategory) {
         this.context = context;
         this.categoryList = categoryList;
         this.typeCategory = typeCategory;
         numberCategory = getNumberCategory();
         informationTitle = StringsProject.getInformationTitle(numberCategory);
+        countInformationTitle = StringsProject.getCountInformationTitle(numberCategory);
         System.out.println(numberCategory+" | "+StringsProject.getInformationTitleLength(numberCategory) + " Число");
     }
 
@@ -87,7 +89,6 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         {
             NewNoteViewHolder.errorText.setVisibility(View.INVISIBLE);
             NewNoteViewHolder.inputText.setText("");
-            numberCategory = getNumberCategory();
             informationTitle = StringsProject.getAddNewItem(getLanguage(),numberCategory);
             newNoteViewHolder.titleText.setText(informationTitle[i]);
             typesNotes typesNotes = new typesNotes(numberCategory,i);
@@ -105,7 +106,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             return categoryList.size();
         }
         else {
-            return informationTitle.length;
+            return countInformationTitle+typesNotes.getCountNewNotes();
         }
     }
 
@@ -117,6 +118,14 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
                 System.out.println(e);
             }
         return NumberCategory;
+    }
+
+    public int getCountInformationTitle() {
+        return countInformationTitle;
+    }
+
+    public void setCountInformationTitle(int countInformationTitle) {
+        this.countInformationTitle = countInformationTitle;
     }
 
     protected int getLanguage()
@@ -148,7 +157,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             if(typeCategory.equals(""))
             {
                 layoutSelectCategory = itemView.findViewById(R.id.layoutSelectCategory);
-                imageView = itemView.findViewById(R.id.img_content);
+                imageView = itemView.findViewById(R.id.MainInfo_imgContent);
                 System.out.println("NewNoteAdapter.NewNoteViewHolder зашёл в список с категориями");
             }
             else

@@ -53,6 +53,8 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
         String visualProtectionText = "*****";
         int position = mainInfoViewHolder.getAdapterPosition();
         //MainActivity.getGetMainInfoRecycler().removeAllViews();
+        //mainInfoViewHolder.img_content.setVisibility(View.VISIBLE);
+        mainInfoViewHolder.img_content.setImageResource(R.drawable.ic_baseline_website_24);
         System.out.println(position);
         mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
 
@@ -71,6 +73,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 boolean secure[] = parametersField.getSecureField();
                 boolean copy[] = parametersField.getCopyField();
                 System.out.println(position);
+
                 if(mainInfoViewHolder.CardViewforInformation.getVisibility() == View.GONE)
                 {
                     if(getWork1() != 0) notifyItemChanged(getWork1());
@@ -144,6 +147,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 }
                 else mainInfoViewHolder.layout_Arg4.setVisibility(View.GONE);
                 /*              */
+                System.out.println("ARG2: "+mainInfoInformationList.get(0).getArg2()+" | "+secure[2]);
                 System.out.println(mainInfoViewHolder.Arg1.getText());
                 ButtonMainActivity.secure(mainInfoViewHolder,visualProtectionText,mainInfoInformationList);
             }
@@ -203,7 +207,7 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
             layout_Arg4 = itemView.findViewById(R.id.layout_Arg4);
 
             button_close_or_open_content = itemView.findViewById(R.id.button_close_or_open_content);
-            img_content = itemView.findViewById(R.id.img_content);
+            img_content = itemView.findViewById(R.id.MainInfo_imgContent);
             name_content = itemView.findViewById(R.id.name_category);
 
             more_info_about_content = itemView.findViewById(R.id.more_info_about_content);

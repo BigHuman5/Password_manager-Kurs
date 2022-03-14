@@ -27,7 +27,6 @@ public class ButtonAddNewNote
         NewNoteAdapter.NewNoteViewHolder.getLayoutSelectCategory().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //System.out.println(position);
                 context = NewNoteActivity.getContext();
                 Intent intent = new Intent(context, NewNoteActivity.class);
                 System.out.println("Position: "+position);
@@ -38,19 +37,6 @@ public class ButtonAddNewNote
         });
 
 }
-
-    public static void enterAddInformation()
-    {
-        NewNoteAdapter.NewNoteViewHolder.getLayoutSelectCategory().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context = MainActivity.getContext();
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
-    }
 
     public static void enterAddNewItem(ArrayList<Fields> items)
     {
@@ -79,6 +65,12 @@ public class ButtonAddNewNote
                    //ArrayList<String> information = new ArrayList<String>();
                    //System.out.println(items.size());
                    ActionsWithBD.addNewItem(items);
+
+                   context = NewNoteActivity.getContext();
+                   Intent intent = new Intent(context, MainActivity.class);
+                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                   context.startActivity(intent);
+
                }
 
            }
