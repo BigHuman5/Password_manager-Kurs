@@ -96,40 +96,6 @@ public class MainActivity extends Activity {
         mainInfoRecycler.setAdapter(mainInfoAdapter);
     }
 
-    public void TestFunc(List<MainInfo> mainInfoList)
-    {
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
-
-        ContentValues contentValues = new ContentValues(); // Для удобной работы с бд
-        contentValues.put(DBHelper.getKeyId(),mainInfoList.size()+1);
-        contentValues.put(DBHelper.getKeyPosition(),mainInfoList.size()+1);
-        /*contentValues.put(DBHelper.getKeyType(),1);
-        contentValues.put(DBHelper.getKeyName(),"twitter.com");
-        contentValues.put(DBHelper.getKeyFavorite(),false);
-
-        contentValues.put(DBHelper.getKEY_1ArgValue(),"Какая-то важная информация");
-        contentValues.put(DBHelper.getKEY_2ArgValue(),"Крутой пароль тут");
-        contentValues.put(DBHelper.getKEY_3ArgValue(),"Коммент");*/
-
-        contentValues.put(DBHelper.getKeyType(),2);
-        contentValues.put(DBHelper.getKeyName(),"Master Card");
-        contentValues.put(DBHelper.getKeyFavorite(),false);
-
-        contentValues.put(DBHelper.getKEY_1ArgValue(),"3521654597545487");
-        contentValues.put(DBHelper.getKEY_2ArgValue(),"02/24");
-        contentValues.put(DBHelper.getKEY_3ArgValue(),"5412");
-        contentValues.put(DBHelper.getKEY_4ArgValue(),"Evgef Erfdf");
-        contentValues.put(DBHelper.getKEY_5ArgValue(),"54874");
-        contentValues.put(DBHelper.getKEY_6ArgValue(),"Nice jock");
-
-
-        Log.d("mfd","ID = "+contentValues.get(DBHelper.getKeyId())
-                +"| Type = "+contentValues.get(DBHelper.getKeyType())
-                +"| Name = "+contentValues.get(DBHelper.getKeyName()));
-        database.insert(DBHelper.getTableName(),null,contentValues);
-
-    }
-
     public static ConstraintLayout getMainActivity() {
         return mainActivity;
     }
