@@ -3,6 +3,8 @@ package com.example.Password_manager.model;
 public class Security {
     private String key;
 
+    public Security() {}
+
     public String getKey() {
         return key;
     }

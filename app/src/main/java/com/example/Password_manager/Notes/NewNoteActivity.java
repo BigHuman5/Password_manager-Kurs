@@ -3,13 +3,9 @@ package com.example.Password_manager.Notes;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-
 import com.example.Password_manager.Button.ButtonAddNewNote;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;

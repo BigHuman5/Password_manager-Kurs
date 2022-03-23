@@ -32,6 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_8ArgValue = "arg8Value";
     private static final String KEY_9ArgValue = "arg9Value";
     private static final String KEY_10ArgValue = "arg10Value";
+    private boolean dataEntered = true;
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,25 +41,33 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME+ "(" +
-                KEY_ID + " INTEGER primary key autoincrement NOT NULL," +
-                KEY_POSITION + " INTEGER," +
-                KEY_TYPE + " INTEGER NOT NULL," +
-                KEY_NAME + " TEXT," +
-                KEY_FAVORITE + " BOOLEAN CHECK ("+KEY_FAVORITE+" IN (0, 1))," +
+        /*
+        В данную функцию код зайдёт только если базы нет.
+        dataEntered нужна для выдачи нужного внешнего разделения.
+         */
+        if(!dataEntered) { //Если данных нет вообще.
+            dataEntered = true;
+        }
+        else {
+            db.execSQL("create table " + TABLE_NAME+ "(" +
+                    KEY_ID + " INTEGER primary key autoincrement NOT NULL," +
+                    KEY_POSITION + " INTEGER," +
+                    KEY_TYPE + " INTEGER NOT NULL," +
+                    KEY_NAME + " TEXT," +
+                    KEY_FAVORITE + " BOOLEAN CHECK ("+KEY_FAVORITE+" IN (0, 1))," +
 
-                KEY_1ArgValue + " TEXT," +
-                KEY_2ArgValue + " TEXT," +
-                KEY_3ArgValue + " TEXT," +
-                KEY_4ArgValue + " TEXT," +
-                KEY_5ArgValue + " TEXT," +
-                KEY_6ArgValue + " TEXT," +
-                KEY_7ArgValue + " TEXT," +
-                KEY_8ArgValue + " TEXT," +
-                KEY_9ArgValue + " TEXT," +
-                KEY_10ArgValue + " TEXT)");
-
-        new StandartAddDB(db);
+                    KEY_1ArgValue + " TEXT," +
+                    KEY_2ArgValue + " TEXT," +
+                    KEY_3ArgValue + " TEXT," +
+                    KEY_4ArgValue + " TEXT," +
+                    KEY_5ArgValue + " TEXT," +
+                    KEY_6ArgValue + " TEXT," +
+                    KEY_7ArgValue + " TEXT," +
+                    KEY_8ArgValue + " TEXT," +
+                    KEY_9ArgValue + " TEXT," +
+                    KEY_10ArgValue + " TEXT)");
+            new StandartAddDB(db);
+        }
         //setDefaultLabel(db);
     }
 
@@ -74,6 +83,14 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public String getDatabaseName() {
         return DATABASE_NAME;
+    }
+
+    public boolean isDataEntered() {
+        return dataEntered;
+    }
+
+    public void setDataEntered(boolean dataEntered) {
+        this.dataEntered = dataEntered;
     }
 
     public static String getTableName() {

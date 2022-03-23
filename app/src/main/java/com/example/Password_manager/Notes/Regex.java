@@ -29,4 +29,10 @@ public class Regex {
             return false;
         }
     }
+
+    //
+    public static boolean isWrongPassword(String password,String inputPassword)
+    {
+        return password.equals(inputPassword);
+    }
 }
