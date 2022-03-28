@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_8ArgValue = "arg8Value";
     private static final String KEY_9ArgValue = "arg9Value";
     private static final String KEY_10ArgValue = "arg10Value";
-    private boolean dataEntered = true;
+    private boolean dataEntered = false;
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

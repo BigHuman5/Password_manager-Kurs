@@ -19,14 +19,23 @@ public class SecurityAdapter extends SecurityActivity {
     private int logoInt = R.drawable.facebook;
     private DBHelper dbHelper;
     private SQLiteDatabase database;
+    //
+    private ImageView logo;
     ///
     private ConstraintLayout layoutWithActiveBD;
     private static TextView textEnterPasswordSecurity;
-    private static ImageView logo;
     private static EditText inputPassword;
     private static TextView errorText;
     private static Button buttonForEnterPassword;
     ///
+    private ConstraintLayout layoutCreateBD;
+    private static TextView textCreatePasswordSecurity;
+    private static EditText InputNewPassword;
+    private static TextView textConfirmationPasswordSecurity;
+    private static EditText InputPasswordConfirmation;
+    private static TextView errorCreateText;
+    private static Button buttonForCreatePassword;
+    //
 
 
     public SecurityAdapter(Context context) {
@@ -44,7 +53,8 @@ public class SecurityAdapter extends SecurityActivity {
             layoutWithActiveBD.setVisibility(View.VISIBLE);
         }
         else{
-            textEnterPasswordSecurity.setText("Тут пусто");
+            textCreatePasswordSecurity.setText("Тут пусто");
+            layoutCreateBD.setVisibility(View.VISIBLE);
         }
     }
 
@@ -59,6 +69,14 @@ public class SecurityAdapter extends SecurityActivity {
         inputPassword = securityActivity.findViewById(R.id.InputPassword);
         errorText = securityActivity.findViewById(R.id.errorText);
         buttonForEnterPassword = securityActivity.findViewById(R.id.buttonForEnterPassword);
+        //
+        layoutCreateBD = securityActivity.findViewById(R.id.LayoutCreatePassword);
+        textCreatePasswordSecurity = securityActivity.findViewById(R.id.textCreatePasswordSecurity);
+        InputNewPassword = securityActivity.findViewById(R.id.InputNewPassword);
+        textConfirmationPasswordSecurity = securityActivity.findViewById(R.id.textConfirmationPasswordSecurity);
+        InputPasswordConfirmation = securityActivity.findViewById(R.id.InputPasswordConfirmation);
+        errorCreateText = securityActivity.findViewById(R.id.errorCreateText);
+        buttonForCreatePassword = securityActivity.findViewById(R.id.buttonForCreatePassword);
         //
 
     }
