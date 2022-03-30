@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.Password_manager.DataBase.ActionsWithBD;
 import com.example.Password_manager.DataBase.DBHelper;
-import com.example.Password_manager.MainActivity;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SecurityActivity;
 
@@ -31,9 +31,10 @@ public class SecurityAdapter extends SecurityActivity {
     private ConstraintLayout layoutCreateBD;
     private static TextView textCreatePasswordSecurity;
     private static EditText InputNewPassword;
+    private static TextView errorNewPasswordText;
     private static TextView textConfirmationPasswordSecurity;
     private static EditText InputPasswordConfirmation;
-    private static TextView errorCreateText;
+    private static TextView errorConfirmationPasswordText;
     private static Button buttonForCreatePassword;
     //
 
@@ -42,19 +43,21 @@ public class SecurityAdapter extends SecurityActivity {
         definitionItems();
         dbHelper = new DBHelper(context);
         database = dbHelper.getWritableDatabase(); // создание/открытие бд
-        System.out.println(dbHelper.isDataEntered()); // проверяет создана ли бд
-        fd(dbHelper);
+        fd();
     }
 
-    public void fd(DBHelper dbHelper)
+    public void fd()
     {
-        if(dbHelper.isDataEntered()) {
+        layoutWithActiveBD.setVisibility(View.GONE);
+        layoutCreateBD.setVisibility(View.GONE);
+        if(ActionsWithBD.checkSecretKey()) {
             textEnterPasswordSecurity.setText("Тут есть бд");
             layoutWithActiveBD.setVisibility(View.VISIBLE);
         }
         else{
             textCreatePasswordSecurity.setText("Тут пусто");
             layoutCreateBD.setVisibility(View.VISIBLE);
+            //layoutWithActiveBD.setVisibility(View.VISIBLE);
         }
     }
 
@@ -73,9 +76,10 @@ public class SecurityAdapter extends SecurityActivity {
         layoutCreateBD = securityActivity.findViewById(R.id.LayoutCreatePassword);
         textCreatePasswordSecurity = securityActivity.findViewById(R.id.textCreatePasswordSecurity);
         InputNewPassword = securityActivity.findViewById(R.id.InputNewPassword);
+        errorNewPasswordText = securityActivity.findViewById(R.id.errorNewPasswordText);
         textConfirmationPasswordSecurity = securityActivity.findViewById(R.id.textConfirmationPasswordSecurity);
         InputPasswordConfirmation = securityActivity.findViewById(R.id.InputPasswordConfirmation);
-        errorCreateText = securityActivity.findViewById(R.id.errorCreateText);
+        errorConfirmationPasswordText = securityActivity.findViewById(R.id.errorConfirmationPasswordText);
         buttonForCreatePassword = securityActivity.findViewById(R.id.buttonForCreatePassword);
         //
 
@@ -99,5 +103,51 @@ public class SecurityAdapter extends SecurityActivity {
 
     public static Button getButtonForEnterPassword() {
         return buttonForEnterPassword;
+    }
+
+    public int getLogoInt() {        return logoInt;    }
+
+    public DBHelper getDbHelper() {
+        return dbHelper;
+    }
+
+    public SQLiteDatabase getDatabase() {
+        return database;
+    }
+
+    public ImageView getLogo() {
+        return logo;
+    }
+
+    public ConstraintLayout getLayoutCreateBD() {
+        return layoutCreateBD;
+    }
+
+    public static TextView getTextCreatePasswordSecurity() {
+        return textCreatePasswordSecurity;
+    }
+
+    public static EditText getInputNewPassword() {
+        return InputNewPassword;
+    }
+
+    public static TextView getTextConfirmationPasswordSecurity() {
+        return textConfirmationPasswordSecurity;
+    }
+
+    public static EditText getInputPasswordConfirmation() {
+        return InputPasswordConfirmation;
+    }
+
+    public static TextView getErrorNewPasswordText() {
+        return errorNewPasswordText;
+    }
+
+    public static Button getButtonForCreatePassword() {
+        return buttonForCreatePassword;
+    }
+
+    public static TextView getErrorConfirmationPasswordText() {
+        return errorConfirmationPasswordText;
     }
 }

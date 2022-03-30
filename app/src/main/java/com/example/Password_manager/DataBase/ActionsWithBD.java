@@ -1,6 +1,8 @@
 package com.example.Password_manager.DataBase;
 
 import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -9,6 +11,9 @@ import com.example.Password_manager.Notes.NewNoteActivity;
 import com.example.Password_manager.Notes.NewNoteAdapter;
 import com.example.Password_manager.Notes.model.Fields;
 import com.example.Password_manager.Notes.typesNotes;
+import com.example.Password_manager.SecurityActivity;
+import com.example.Password_manager.SecurityInformation;
+import com.example.Password_manager.model.MainInfo;
 
 import java.util.ArrayList;
 
@@ -59,5 +64,49 @@ public class ActionsWithBD {
         else {
             System.out.println("ERROR ADDBD");
         }
+    }
+
+    public static boolean checkSecretKey()
+    {
+        boolean isSecretKeyNotNull = false;
+        dbHelper = new DBHelper(SecurityActivity.getContext());
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        Cursor cursor = database.query(DBHelper.getTableName(),null,null,null,null,null,null);
+        if(cursor.moveToFirst()) {
+            int arg1ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_1ArgValue());
+
+            do {
+                System.out.println(arg1ValueIndex+" checkSecretKey "+cursor.getString(arg1ValueIndex));
+                if(cursor.getString(arg1ValueIndex) != null)
+                {
+                    isSecretKeyNotNull = true;
+                }
+            } while (cursor.moveToNext());
+        }
+        else {
+            System.out.println("ERROR CHECK");
+        }
+        return isSecretKeyNotNull;
+    }
+
+    public static boolean addNewSecretKey(String secretKey) throws SQLException
+    {
+        secretKey= SecurityInformation.encryption(secretKey);
+        try {
+            dbHelper = new DBHelper(SecurityActivity.getContext());
+            SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+            database.execSQL("UPDATE "+ DBHelper.getTableName()+" SET "+DBHelper.getKEY_1ArgValue()+" = '"+secretKey+"' WHERE "+DBHelper.getKeyType()+" = 0");
+            return true;
+        }catch (Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static void getSecretKey() throws SQLException{
+
     }
 }

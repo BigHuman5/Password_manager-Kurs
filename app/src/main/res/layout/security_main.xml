@@ -23,7 +23,7 @@
         android:layout_width="303dp"
         android:layout_height="346dp"
         android:layout_marginTop="10dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/logo"
         app:layout_constraintStart_toStartOf="@+id/logo"
         app:layout_constraintTop_toBottomOf="@+id/logo">
@@ -36,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/InputPasswordConfirmation"
             app:layout_constraintStart_toStartOf="@+id/InputPasswordConfirmation"
-            app:layout_constraintTop_toBottomOf="@id/errorCreateText"
+            app:layout_constraintTop_toBottomOf="@id/errorConfirmationPasswordText"
             app:layout_constraintVertical_bias="0.106" />
 
         <TextView
@@ -64,35 +64,48 @@
             app:layout_constraintTop_toBottomOf="@+id/textCreatePasswordSecurity" />
 
         <TextView
+            android:id="@+id/errorNewPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="{ERROR_TEXT}"
+            android:textColor="@color/errorText"
+            android:textSize="10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/InputNewPassword"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/InputNewPassword"
+            app:layout_constraintTop_toBottomOf="@+id/InputNewPassword" />
+
+        <TextView
             android:id="@+id/textConfirmationPasswordSecurity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:text="{textConfirmationPassword}"
             app:layout_constraintBottom_toTopOf="@+id/InputPasswordConfirmation"
             app:layout_constraintEnd_toEndOf="@+id/InputPasswordConfirmation"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/InputPasswordConfirmation"
-            app:layout_constraintTop_toBottomOf="@+id/InputNewPassword"
-            app:layout_constraintVertical_bias="0.1"
-            android:layout_marginTop="10dp" />
+            app:layout_constraintTop_toBottomOf="@+id/errorNewPasswordText"
+            app:layout_constraintVertical_bias="0.1" />
 
 
         <EditText
             android:id="@+id/InputPasswordConfirmation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textConfirmationPasswordSecurity" />
 
 
         <TextView
-            android:id="@+id/errorCreateText"
+            android:id="@+id/errorConfirmationPasswordText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="{ERROR_TEXT}"
