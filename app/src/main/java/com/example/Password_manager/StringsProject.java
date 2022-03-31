@@ -416,6 +416,10 @@ public class StringsProject {
         return informationTitle[element];
     }
 
+    public static int getInformationTitleLength() {
+        return informationTitle.length;
+    }
+
     public static int getCountInformationTitle(int type) // Для определения количества строк в добавлениее информации
     {
         int countInformationTitle = 0;

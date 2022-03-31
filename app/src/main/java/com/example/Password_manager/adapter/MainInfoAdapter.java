@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Password_manager.Button.ButtonMainActivity;
+import com.example.Password_manager.DataBase.ActionsWithBD;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;
@@ -61,13 +62,13 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
         mainInfoViewHolder.name_content.setText(MainInfoList.get(i).getNameContent());
         if(mainInfoViewHolder.CardViewforInformation.getVisibility() == View.VISIBLE)
         {
-            mainInfoInformationList = stringsProject.getListMainInformation(position); // Получение данных.
+            mainInfoInformationList = ActionsWithBD.getListMainInformation(position); // Получение данных.
         }
         mainInfoViewHolder.button_close_or_open_content.setOnClickListener(new View.OnClickListener() {
             @Override
             //@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
             public void onClick(View v){
-                mainInfoInformationList = stringsProject.getListMainInformation(position);
+                mainInfoInformationList = ActionsWithBD.getListMainInformation(position);
                 //
                 parametersField parametersField = new parametersField(mainInfoInformationList.get(0).getType());
                 boolean secure[] = parametersField.getSecureField();

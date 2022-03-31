@@ -11,6 +11,7 @@ import com.example.Password_manager.Notes.NewNoteActivity;
 import com.example.Password_manager.Notes.NewNoteAdapter;
 import com.example.Password_manager.Notes.Regex;
 import com.example.Password_manager.SecurityActivity;
+import com.example.Password_manager.SecurityInformation;
 import com.example.Password_manager.adapter.SecurityAdapter;
 import com.example.Password_manager.model.Security;
 
@@ -28,7 +29,6 @@ public class ButtonSecurity {
         SecurityAdapter.getButtonForCreatePassword().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isNormalPass = false;
                 String inputNewPassword = SecurityAdapter.getInputNewPassword().getText().toString();
                 String inputPasswordConfirmation = SecurityAdapter.getInputPasswordConfirmation().getText().toString();
                 SecurityAdapter.getErrorNewPasswordText().setVisibility(View.GONE);
@@ -81,20 +81,27 @@ public class ButtonSecurity {
             @Override
             public void onClick(View view) {
                 String inputPassword = SecurityAdapter.getInputPassword().getText().toString();
-                boolean isRightPass = Regex.isWrongPassword("123",inputPassword);
-                if(isRightPass)
-                {
-                    SecurityAdapter.getErrorText().setVisibility(View.GONE);
-                    SecurityAdapter.getInputPassword().setText("");
-                    context = SecurityActivity.getContext();
-                    Intent intent = new Intent(context, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // чтобы оно mainActivity закрывалось на выход.
-                    context.startActivity(intent);
+                String encKey = ActionsWithBD.getSecretKey();
+                String encInputPassword = SecurityInformation.encryption(inputPassword);
+                if(encKey != null && encInputPassword != null) {
+                    boolean isRightPass = Regex.isWrongPassword(encKey, encInputPassword);
+                    if (isRightPass) {
+                        Security.setKey(inputPassword);
+                        SecurityAdapter.getErrorText().setVisibility(View.GONE);
+                        SecurityAdapter.getInputPassword().setText("");
+                        context = SecurityActivity.getContext();
+                        Intent intent = new Intent(context, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // чтобы оно mainActivity закрывалось на выход.
+                        context.startActivity(intent);
 
+                    } else {
+                        SecurityAdapter.getErrorText().setText("Ошибочка!");
+                        SecurityAdapter.getErrorText().setVisibility(View.VISIBLE);
+                    }
                 }
-                else{
-                    SecurityAdapter.getErrorText().setText("Ошибочка!");
+                else {
+                    SecurityAdapter.getErrorText().setText("SYSTEM ERROR");
                     SecurityAdapter.getErrorText().setVisibility(View.VISIBLE);
                 }
             }

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.Password_manager.Button.ButtonMainActivity;
+import com.example.Password_manager.DataBase.ActionsWithBD;
 import com.example.Password_manager.DataBase.DBHelper;
 import com.example.Password_manager.adapter.CategoryAdapter;
 import com.example.Password_manager.adapter.MainActivityAdapter;
@@ -53,7 +54,7 @@ public class MainActivity extends Activity {
 
         StringsProject stringsProject = new StringsProject(language);
         categoryList = stringsProject.getListCategoryFilterTitle();
-        mainInfoList = stringsProject.getListMainInfo();
+        mainInfoList = ActionsWithBD.getListMainInfo();
         //TestFunc(mainInfoList);
 
         setCategoryRecycler(categoryList);
