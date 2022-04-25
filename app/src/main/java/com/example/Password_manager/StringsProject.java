@@ -3,22 +3,31 @@ package com.example.Password_manager;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.util.Log;
 
 import com.example.Password_manager.DataBase.DBHelper;
+import com.example.Password_manager.category.imageType;
 import com.example.Password_manager.model.Category;
 import com.example.Password_manager.model.MainInfo;
 import com.example.Password_manager.model.MainInformation;
+import com.example.Password_manager.model.Security;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StringsProject {
 
-    private int HowType = 4;
+    private static final int HowType = 10;
+    private final int howTextsInMainActivity = 4;
     private String[] categoryFilterTitle;
-    private String[][] InformationTitle= new String[HowType][];
+    private String[] categoryForAddNewNote;
+    private static String[][] informationTitle = new String[HowType][];
+    private static String[][] addNewItem = new String[HowType][];
+    private String[] textInMainActivity = new String[howTextsInMainActivity];
+    private static String[] errorText = new String[10];
+    private static String[] securityText = new String[10];
+
     private DBHelper dbHelper;
     private SQLiteDatabase database;
     private ContentValues contentValues;
@@ -26,6 +35,9 @@ public class StringsProject {
     public StringsProject(int language) {
         definitionCategoryFilterTitle(language);
         definitionInformationTitle(language);
+        definitionTextInMainActivity(language);
+        definitionCategoryForAddNewNote(language);
+        definitionErrorText(language);
     }
 
     public List<Category> getListCategoryFilterTitle()
@@ -36,120 +48,44 @@ public class StringsProject {
         return categoryList;
     }
 
-    public List<MainInfo> getListMainInfo()
+
+    public List<Category> getListCategoryAddNewNotes()
     {
-        List<MainInfo> mainInfoList = new ArrayList<>();
-        dbHelper = MainActivity.getDbHelper();
-        database = dbHelper.getWritableDatabase();
-        contentValues = new ContentValues(); // Для удобной работы с бд
-
-        Cursor cursor = database.query(DBHelper.TABLE_INFORMATION,null,null,null,null,null,null);
-        if(cursor.moveToFirst()) {
-            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
-            int typeIndex = cursor.getColumnIndex(DBHelper.KEY_TYPE);
-            int positionIndex = cursor.getColumnIndex(DBHelper.KEY_POSITION);
-            int nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
-            int favoriteIndex = cursor.getColumnIndex(DBHelper.KEY_FAVORITE);
-
-            int arg1ValueIndex = cursor.getColumnIndex(DBHelper.KEY_1ArgValue);
-
-
-            do {
-                if(cursor.getInt(idIndex) == 0) ;
-                else
-                {
-                    mainInfoList.add(new MainInfo(cursor.getInt(typeIndex),cursor.getInt(positionIndex),cursor.getString(nameIndex),cursor.getString(arg1ValueIndex),cursor.getExtras().getBoolean(cursor.getString(favoriteIndex))));
-                }
-                Log.d("mLog","ID = "+cursor.getInt(idIndex)
-                        +" Type = "+cursor.getInt(typeIndex)
-                        +" 1 Arg = "+cursor.getString(arg1ValueIndex));
-            } while (cursor.moveToNext());
-        }else Log.d("mLog","0 rows");
-
-        cursor.close();
-        dbHelper.close();
-
-        //mainInfoList.add(new MainInfo(1,"mail.ru","l",false));
-        return mainInfoList;
+        List<Category> categoryList = new ArrayList<>();
+        for(int i=0;i<categoryForAddNewNote.length;i++)
+            categoryList.add(new Category(i,categoryForAddNewNote[i]));
+        return categoryList;
     }
 
-    public List<MainInformation> getListMainInformation(int position) // Функция по получению информации об определённой строчке
+    public static List<imageType> getListNamedAddItems(int numberCategory)
     {
-        position++;
-        List<MainInformation> mainInformationList = new ArrayList<>();
-
-        dbHelper = MainActivity.getDbHelper();
-        database = dbHelper.getWritableDatabase();
-        contentValues = new ContentValues(); // Для удобной работы с бд
-
-
-
-        Cursor cursor = database.query(DBHelper.TABLE_INFORMATION,null,null,null,null,null,null);
-        if(cursor.moveToFirst()) {
-            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
-            int typeIndex = cursor.getColumnIndex(DBHelper.KEY_TYPE);
-
-            int arg1ValueIndex = cursor.getColumnIndex(DBHelper.KEY_1ArgValue);
-            int arg1SecureIndex = cursor.getColumnIndex(DBHelper.KEY_1ArgSecure);
-
-            int arg2ValueIndex = cursor.getColumnIndex(DBHelper.KEY_2ArgValue);
-            int arg2SecureIndex = cursor.getColumnIndex(DBHelper.KEY_2ArgSecure);
-
-            int arg3ValueIndex = cursor.getColumnIndex(DBHelper.KEY_3ArgValue);
-            int arg3SecureIndex = cursor.getColumnIndex(DBHelper.KEY_3ArgSecure);
-
-            int arg4ValueIndex = cursor.getColumnIndex(DBHelper.KEY_4ArgValue);
-            int arg4SecureIndex = cursor.getColumnIndex(DBHelper.KEY_4ArgSecure);
-            do {
-                if(position == cursor.getInt(idIndex))
-                {
-                    Log.d("renderingMainInformation","ID: "+cursor.getInt(idIndex)
-                            +"| Type: "+cursor.getInt(typeIndex)
-                            +"| Number_Title: "+cursor.getInt(typeIndex)
-                            +"| Position: "+position
-                            +"| idIndex: "+cursor.getInt(idIndex)
-                            +"| name_Title1: "+InformationTitle[cursor.getInt(typeIndex)][0]
-                            +"| arg 1: "+cursor.getString(arg1ValueIndex)
-                            +"| secure1: "+cursor.getInt(arg1SecureIndex)
-                            +"| name_Title2: "+InformationTitle[cursor.getInt(typeIndex)][1]
-                            +"| arg2: "+cursor.getString(arg2ValueIndex)
-                            +"| secure2: "+cursor.getInt(arg2SecureIndex)
-                            +"| name_Title3: "+InformationTitle[cursor.getInt(typeIndex)][2]
-                            +"| arg 3: "+cursor.getString(arg3ValueIndex)
-                            +"| secure3: "+cursor.getInt(arg3SecureIndex)
-                            +"| name_Title4: "+InformationTitle[cursor.getInt(typeIndex)][3]
-                            +"| arg 4: "+cursor.getString(arg4ValueIndex)
-                            +"| secure4: "+cursor.getInt(arg4SecureIndex));
-
-                    mainInformationList.add(0,new MainInformation(cursor.getInt(typeIndex),
-
-                            InformationTitle[cursor.getInt(typeIndex)][0],
-                            cursor.getString(arg1ValueIndex),
-                            cursor.getInt(arg1SecureIndex),
-
-                            InformationTitle[cursor.getInt(typeIndex)][1],
-                            cursor.getString(arg2ValueIndex),
-                            cursor.getInt(arg2SecureIndex),
-
-                            InformationTitle[cursor.getInt(typeIndex)][2],
-                            cursor.getString(arg3ValueIndex),
-                            cursor.getInt(arg3SecureIndex),
-
-                            InformationTitle[cursor.getInt(typeIndex)][3],
-                            cursor.getString(arg4ValueIndex),
-                            cursor.getInt(arg4SecureIndex)));
-                }
-            } while (cursor.moveToNext());
-        }else Log.d("mLog","0 rows");
-
-        return mainInformationList;
+        List<imageType> ListNamedAddItems = new ArrayList<>();
+        if(numberCategory == 0) {
+            ListNamedAddItems.add(new imageType(R.drawable.vk, "vk.com"));
+            ListNamedAddItems.add(new imageType(R.drawable.facebook, "facebook.com"));
+        }
+        else if(numberCategory == 1)
+        {
+            ListNamedAddItems.add(new imageType(R.drawable.mastercard,"MasterCard"));
+            ListNamedAddItems.add(new imageType(R.drawable.mastercard,"Visa"));
+        }
+        else
+        {
+            System.out.println("StringsProject getListNamedAddItems");
+            System.exit(3);
+        }
+        return ListNamedAddItems;
     }
+
+
 
     public void definitionCategoryFilterTitle(int language) {
         switch (language) {
             case 0: //Russian
             {
                 categoryFilterTitle = new String[]{
+                        "Всё",
+                        "Избранное",
                         "Веб-сайты",
                         "Банковские карты",
                         "Прочее",
@@ -165,32 +101,211 @@ public class StringsProject {
                 };
                 break;
             }
+            default:
+            {
+                System.out.println("StringsProject definitionCategoryFilterTitle");
+                System.exit(3);
+            }
+        }
+    }
+
+    public void definitionCategoryForAddNewNote(int language) {
+        switch (language) {
+            case 0: //Russian
+            {
+                categoryForAddNewNote = new String[]{
+                        "Добавить веб-сайт",
+                        "Добавить банковскую карту",
+                        //"Добавить прочую информацию",
+                };
+                break;
+            }
+            case 1: //English
+            {
+                categoryForAddNewNote = new String[]{
+                        "Websites",
+                        "Bank cards",
+                        "Other",
+                };
+                break;
+            }
             default: System.exit(3);
         }
     }
 
-    public void definitionInformationTitle(int language) {
+    private static void definitionInformationTitle(int language) {
+        List<String> informationTitleList = new ArrayList<>();
+        informationTitle[0] = new String[HowType];
+        informationTitle[1] = new String[HowType];
+        informationTitle[2] = new String[HowType];
         switch (language) {
             case 0: //Russian
             { //Website
-                InformationTitle[1] = new String[]{
-                        "Логин",
-                        "Пароль",
-                        "Комментарий",
-                        "null"};
+                informationTitle[0][0] = "Логин";
+                informationTitle[0][1] = "Пароль";
+                informationTitle[0][2] = "Комментарий";
+                //Card
+                informationTitle[1][0] = "Номер карты";
+                informationTitle[1][1] = "Дата окончания";
+                informationTitle[1][2] = "Код безопасности/CVV";
+                informationTitle[1][3] = "Имя владельца карты";
+                informationTitle[1][4] = "Пин код";
+                informationTitle[1][5] = "Комментарий";
                 break;
             }
             case 1: //English
             {
                 //Website
-                InformationTitle[1] = new String[]{
-                        "Login",
-                        "Password",
-                        "Comment",
-                        "null"};
+                informationTitle[1][0] = "Login";
+                informationTitle[1][1] = "Password";
+                informationTitle[1][2] = "Comment";
                 break;
             }
-            default: System.exit(3);
+            default: {
+                System.out.println("StringsProject definitionInformationTitle");
+                System.exit(3);
+            }
+        }
+    }
+
+    public static void definitionTextForAddItem(int language,int numberCategory)
+    {
+        addNewItem[0] = new String[informationTitle[0].length+1];
+        addNewItem[1] = new String[informationTitle[1].length+2];
+        addNewItem[2] = new String[informationTitle[2].length+2];
+        int[] numberStartFor = new int[getHowType()];
+        int numberForFor = 0;
+        definitionInformationTitle(language);
+        switch (language) {
+            case 0: //Russian
+            {
+                switch (numberCategory)
+                {
+                    case 0: //Website
+                    {
+                        addNewItem[numberCategory][0] = "Адрес";
+                        numberStartFor[numberCategory] = 1;
+                        break;
+                    }
+                    case 1: //Card
+                    {
+                        addNewItem[numberCategory][0] = "Название";
+                        addNewItem[numberCategory][1] = "Тип карты";
+                        numberStartFor[numberCategory] = 2;
+                        break;
+                    }
+                    default: {
+                        System.out.println("StringsProject definitionTextInMainActivity"+language+" | "+numberCategory);
+                        System.exit(3);
+                        break;
+                    }
+                }
+                break;
+            }
+            case 1: //English
+            {
+                switch (numberCategory)
+                {
+                    case 0: //Website
+                    {
+                        addNewItem[numberCategory][0] = "Address";
+                        numberStartFor[numberCategory] = 1;
+                        break;
+                    }
+                    case 1: //Card
+                    {
+                        addNewItem[numberCategory][0] = "Name";
+                        addNewItem[numberCategory][1] = "Type";
+                        numberStartFor[numberCategory] = 2;
+                        break;
+                    }
+                    default: {
+                        System.out.println("StringsProject definitionTextInMainActivity"+language+" | "+numberCategory);
+                        System.exit(3);
+                        break;
+                    }
+                }
+            }
+            default: {
+                System.out.println("StringsProject definitionTextInMainActivity"+language);
+                System.exit(3);
+                break;
+            }
+        }
+            for (int i = numberStartFor[numberCategory]; i <= addNewItem[numberCategory].length; i++) {
+                try {
+
+                    addNewItem[numberCategory][i] = informationTitle[numberCategory][numberForFor];
+                } catch (Exception ignored) {
+                }
+                numberForFor++;
+            }
+        }
+
+    private void definitionTextInMainActivity(int language) {
+        switch (language) {
+            /*
+            0 - Title
+             */
+            case 0: {
+                textInMainActivity[0] = "Главная";
+                break;
+            }
+            case 1: {
+                textInMainActivity[0] = "Main";
+                break;
+            }
+            default: {
+                System.out.println("StringsProject definitionTextInMainActivity");
+                System.exit(3);
+                break;
+            }
+        }
+    }
+
+    static void definitionTextForSecurity(int language)
+    {
+        switch (language)
+        {
+            case 0: { //Russian
+                securityText[0] = "На данном устройстве не было обнаружено какой-либо информации.\n\nПожалуйста введите пароль и подтвердите его.";
+                securityText[1] = "Пожалуйста подтвердите ваш пароль";
+                securityText[2] = "Пожалуйста введите ваш пароль";
+
+                securityText[3] = "Создать профиль";
+                securityText[4] = "Войти в профиль";
+                break;
+            }
+            default: {
+                System.out.println("StringsProject definitionTextForSecurity");
+                System.exit(3);
+                break;
+            }
+        }
+    }
+
+    static void definitionErrorText(int language)
+    {
+        switch (language) {
+            case 0: { //Russian
+                errorText[0] = "Ошибка";
+                errorText[1] = "Это обязательное поле";
+                errorText[2] = "Введён неправильный пароль";
+                errorText[3] = "Пароли не совпадают";
+                errorText[4] = "Введите пароль ещё раз";
+                errorText[5] = "Пароль должен быть минимум "+ Security.getMinKey()+" символов";
+                break;
+            }
+            case 1: {
+                errorText[0] = "Error";
+                errorText[1] = "Error1";
+                break;
+            }
+            default: {
+                System.out.println("StringsProject definitionErrorText");
+                System.exit(3);
+                break;
+            }
         }
     }
 
@@ -198,4 +313,68 @@ public class StringsProject {
         this.categoryFilterTitle = categoryFilterTitle;
     }
 
+    public String[] getTextInMainActivity() {
+        return textInMainActivity;
+    }
+
+    public void setTextInMainActivity(String[] textInMainActivity) {
+        this.textInMainActivity = textInMainActivity;
+    }
+
+    public static int getInformationTitleLength(int element)
+    {
+        return informationTitle[element].length;
+    }
+
+    public static String[] getInformationTitle(int element) {
+        return informationTitle[element];
+    }
+
+    public static int getInformationTitleLength() {
+        return informationTitle.length;
+    }
+
+    public static int getCountInformationTitle(int type) // Для определения количества строк в добавлениее информации
+    {
+        int countInformationTitle = 0;
+        for(int numberForFor=0;numberForFor<=getHowType();numberForFor++)
+        {
+            try {
+                if(!informationTitle[type][numberForFor].equals("null"))
+                {
+                    countInformationTitle++;
+                }
+            }
+            catch (Exception ignore) { }
+
+        }
+        return countInformationTitle;
+    }
+
+    public static int getHowType() { // Тип категории
+        return HowType;
+    }
+
+    public static String[] getAddNewItem(int language, int type) {
+        definitionTextForAddItem(language,type);
+        System.out.println("GEASDS: "+type+" | "+ Arrays.toString(addNewItem[type]));
+        return addNewItem[type];
+    }
+
+    public static String[] getErrorText() {
+        return errorText;
+    }
+
+    public static String getItemErrorText(int item){
+        return errorText[item];
+    }
+
+    public static String[] getSecurityText() {
+        return securityText;
+    }
+
+    public static String getItemSecurityText(int item)
+    {
+        return securityText[item];
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.Password_manager;
 
 public class SettingsProject {
-    private int language;
+    private static int language;
 
     public SettingsProject() {
         definitionLanguage();
@@ -11,7 +11,7 @@ public class SettingsProject {
         language = 0;
     }
 
-    public int getLanguage() {
+    public static int getLanguage() {
         return language;
     }
 }

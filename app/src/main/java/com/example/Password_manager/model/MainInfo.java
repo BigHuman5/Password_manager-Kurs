@@ -12,16 +12,19 @@ public class MainInfo {
 
     String arg1;
 
+    String nameCategory;
+
 
     Boolean favorite;
      /*            */
 
-    public MainInfo(int type,int position, String nameContent, String arg1, Boolean favorite) {
+    public MainInfo(int type,int position,String nameCategory, String nameContent, String arg1, Boolean favorite) {
         this.position = position;
         this.type = type;
         this.nameContent = nameContent;
         this.arg1 = arg1;
         this.favorite = favorite;
+        this.nameCategory = nameCategory;
     }
 
     public int getType() {
@@ -63,5 +66,13 @@ public class MainInfo {
 
     public void setFavorite(Boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public String getNameCategory() {
+        return nameCategory;
+    }
+
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 }

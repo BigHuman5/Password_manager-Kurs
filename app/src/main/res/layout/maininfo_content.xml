@@ -2,12 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/InformationContent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/mainInfoWhite">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/FieldWithNameCategoryList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,14 +27,14 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="cardviewforinformation"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/mainInfoWhite"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_content"
+            app:layout_constraintTop_toBottomOf="@+id/MainInfo_imgContent"
             app:layout_constraintVertical_bias="0.0">
 
             <android.support.constraint.ConstraintLayout
@@ -45,7 +46,6 @@
                     android:id="@+id/layout_Arg1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -424,25 +424,29 @@
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <ImageView
-            android:id="@+id/img_content"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginBottom="29dp"
-            android:backgroundTint="@color/mainInfoWhite"
+            android:id="@+id/MainInfo_imgContent"
+            android:layout_width="45dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="5dp"
             android:contentDescription="img_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:scaleType="center"
+            android:minWidth="25dp"
+            android:minHeight="25dp"
+            android:scaleType="centerInside"
             app:fabSize="mini"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/name_category"
+            app:layout_constraintEnd_toStartOf="@+id/name_category"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_close_or_open_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_language_24" />
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/mastercard" />
+
 
         <TextView
-            android:id="@+id/name_content"
+            android:id="@+id/name_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -451,7 +455,7 @@
             android:fontFamily="@font/main_bold"
             android:text="NameWebSite"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_content"
+            app:layout_constraintStart_toEndOf="@+id/MainInfo_imgContent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -483,9 +487,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         app:cardBackgroundColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="@id/FieldWithNameCategoryList"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout2" />
+        app:layout_constraintStart_toStartOf="@id/FieldWithNameCategoryList"
+        app:layout_constraintTop_toBottomOf="@id/FieldWithNameCategoryList" />
 
 </android.support.constraint.ConstraintLayout>
