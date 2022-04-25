@@ -56,6 +56,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             NewNoteItems = LayoutInflater.from(context).inflate(R.layout.selectcategory_addnewnote, viewGroup, false);
         }
         else{ //Если прилетел ответ, тоесть тип выбран. Отображается меню с заполнением информации
+            //typesNotes.setCountNewNotes(0); // Зануление уникальных полей
             NewNoteItems = LayoutInflater.from(context).inflate(R.layout.enterinfo_addnewnote,viewGroup,false);
         }
         return new NewNoteAdapter.NewNoteViewHolder(NewNoteItems);
@@ -65,7 +66,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
     public void onBindViewHolder(@NonNull NewNoteViewHolder newNoteViewHolder, int i) {
         if(typeCategory.equals("")) { //Если прилетел пустой ответ, тоесть тип не выбрал. Отображается выбор типа
             newNoteViewHolder.nameCategory.setText(categoryList.get(i).getNameCategory());
-            System.out.println(i);
+            NewNoteActivity.getAddNewItem().hide();
             switch (i) { /* Подстановка изображения в типы категорий. */
                 case 0: { // Изображение веб сайта
                     newNoteViewHolder.imageView.setImageResource(R.drawable.ic_baseline_website_24);
@@ -91,10 +92,8 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
             NewNoteViewHolder.inputText.setText("");
             informationTitle = StringsProject.getAddNewItem(getLanguage(),numberCategory);
             newNoteViewHolder.titleText.setText(informationTitle[i]);
-            typesNotes typesNotes = new typesNotes(numberCategory,i);
+            new typesNotes(numberCategory,i);
             fields.add(new Fields(NewNoteViewHolder.getInputText(),NewNoteViewHolder.getErrorText()));
-            //f[i][0] = NewNoteViewHolder.getInputText(); // заполнение информации в массив для удобной работы с текстом.
-            //f[i][1] = NewNoteViewHolder.getErrorText(); // заполнение информации в массив для удобной работы с ошибками.
             System.out.println("\n"+i+" | "+fields.get(i).getInputText().getText().toString()+" | "+fields.get(i).getErrorText().getText().toString());
             System.out.println(NewNoteViewHolder.getLayoutAddCategory().findViewById(R.id.errorText).getContext().toString());
         }

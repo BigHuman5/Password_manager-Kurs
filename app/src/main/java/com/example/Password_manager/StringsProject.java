@@ -10,6 +10,7 @@ import com.example.Password_manager.category.imageType;
 import com.example.Password_manager.model.Category;
 import com.example.Password_manager.model.MainInfo;
 import com.example.Password_manager.model.MainInformation;
+import com.example.Password_manager.model.Security;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +25,8 @@ public class StringsProject {
     private static String[][] informationTitle = new String[HowType][];
     private static String[][] addNewItem = new String[HowType][];
     private String[] textInMainActivity = new String[howTextsInMainActivity];
+    private static String[] errorText = new String[10];
+    private static String[] securityText = new String[10];
 
     private DBHelper dbHelper;
     private SQLiteDatabase database;
@@ -34,6 +37,7 @@ public class StringsProject {
         definitionInformationTitle(language);
         definitionTextInMainActivity(language);
         definitionCategoryForAddNewNote(language);
+        definitionErrorText(language);
     }
 
     public List<Category> getListCategoryFilterTitle()
@@ -51,142 +55,6 @@ public class StringsProject {
         for(int i=0;i<categoryForAddNewNote.length;i++)
             categoryList.add(new Category(i,categoryForAddNewNote[i]));
         return categoryList;
-    }
-
-
-    public List<MainInfo> getListMainInfo()
-    {
-        List<MainInfo> mainInfoList = new ArrayList<>();
-        dbHelper = MainActivity.getDbHelper();
-        database = dbHelper.getWritableDatabase();
-        contentValues = new ContentValues(); // Для удобной работы с бд
-
-        Cursor cursor = database.query(DBHelper.getTableName(),null,null,null,null,null,null);
-        if(cursor.moveToFirst()) {
-            int idIndex = cursor.getColumnIndex(DBHelper.getKeyId());
-            int typeIndex = cursor.getColumnIndex(DBHelper.getKeyType());
-            int positionIndex = cursor.getColumnIndex(DBHelper.getKeyPosition());
-            int nameIndex = cursor.getColumnIndex(DBHelper.getKeyName());
-            int favoriteIndex = cursor.getColumnIndex(DBHelper.getKeyFavorite());
-
-            int arg1ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_1ArgValue());
-
-
-            do {
-                if(cursor.getInt(idIndex) == 0) ;
-                else
-                {
-                    mainInfoList.add(new MainInfo(cursor.getInt(typeIndex),cursor.getInt(positionIndex),cursor.getString(nameIndex),cursor.getString(arg1ValueIndex),cursor.getExtras().getBoolean(cursor.getString(favoriteIndex))));
-                }
-                Log.d("mLog","ID = "+cursor.getInt(idIndex)
-                        +" Type = "+cursor.getInt(typeIndex)
-                        +" 1 Arg = "+cursor.getString(nameIndex));
-            } while (cursor.moveToNext());
-        }else Log.d("mLog","0 rows");
-
-        cursor.close();
-        dbHelper.close();
-        return mainInfoList;
-    }
-
-    public List<MainInformation> getListMainInformation(int position) // Функция по получению информации об определённой строчке
-    {
-        position++;
-        List<MainInformation> mainInformationList = new ArrayList<>();
-
-        dbHelper = MainActivity.getDbHelper();
-        database = dbHelper.getWritableDatabase();
-        contentValues = new ContentValues(); // Для удобной работы с бд
-
-        String title = new String();
-
-
-
-        Cursor cursor = database.query(DBHelper.getTableName(),null,null,null,null,null,null);
-        if(cursor.moveToFirst()) {
-
-            int idIndex = cursor.getColumnIndex(DBHelper.getKeyId());
-            int typeIndex = cursor.getColumnIndex(DBHelper.getKeyType());
-
-            int arg1ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_1ArgValue());
-            int arg2ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_2ArgValue());
-            int arg3ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_3ArgValue());
-            int arg4ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_4ArgValue());
-            int arg5ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_5ArgValue());
-            int arg6ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_6ArgValue());
-            int arg7ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_7ArgValue());
-            int arg8ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_8ArgValue());
-            int arg9ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_9ArgValue());
-            int arg10ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_10ArgValue());
-            System.out.println(arg4ValueIndex);
-            do {
-                if(position == cursor.getInt(idIndex))
-                {
-
-                    String logString = "ID: "+cursor.getInt(idIndex)
-                            +"| Type: "+cursor.getInt(typeIndex)
-                            +"| Number_Title: "+cursor.getInt(typeIndex)
-                            +"| Position: "+position
-                            +"| idIndex: "+cursor.getInt(idIndex);
-
-                    for(int i=0;i>=informationTitle.length;i++)
-                    {
-                        int p=0;
-                        switch (i){
-                            case 0: { p=arg1ValueIndex; break; }
-                            case 1: { p=arg2ValueIndex; break; }
-                            case 2: { p=arg3ValueIndex; break; }
-                            case 3: { p=arg4ValueIndex; break; }
-                            case 4: { p=arg5ValueIndex; break; }
-                            case 5: { p=arg6ValueIndex; break; }
-                            case 6: { p=arg7ValueIndex; break; }
-                            case 7: { p=arg8ValueIndex; break; }
-                            case 8: { p=arg9ValueIndex; break; }
-                            case 9: { p=arg10ValueIndex; break; }
-                            default: { p=arg1ValueIndex; break; }
-                        }
-                        logString += " | name_Title"+i+": "+informationTitle[cursor.getInt(typeIndex)][i]
-                                +"| arg"+i+": "+cursor.getString(p);
-                    }
-
-                    Log.d("getListMainInformation",logString);
-
-                    for(int i=0;i>=informationTitle.length;i++) {
-                        try{
-                            System.out.println(informationTitle[cursor.getInt(typeIndex)][i]);
-                        }
-                        catch (Exception e)
-                        {
-                            informationTitle[cursor.getInt(typeIndex)][i] = "0";
-                        }
-                    }
-
-                    mainInformationList.add(0,new MainInformation(cursor.getInt(typeIndex),
-                            informationTitle[cursor.getInt(typeIndex)][0],
-                            informationTitle[cursor.getInt(typeIndex)][1],
-                            informationTitle[cursor.getInt(typeIndex)][2],
-                            informationTitle[cursor.getInt(typeIndex)][3],
-                            informationTitle[cursor.getInt(typeIndex)][4],
-                            informationTitle[cursor.getInt(typeIndex)][5],
-                            informationTitle[cursor.getInt(typeIndex)][6],
-                            informationTitle[cursor.getInt(typeIndex)][7],
-                            informationTitle[cursor.getInt(typeIndex)][8],
-                            informationTitle[cursor.getInt(typeIndex)][9],
-                            cursor.getString(arg1ValueIndex),
-                            cursor.getString(arg2ValueIndex),
-                            cursor.getString(arg3ValueIndex),
-                            cursor.getString(arg4ValueIndex),
-                            cursor.getString(arg5ValueIndex),
-                            cursor.getString(arg6ValueIndex),
-                            cursor.getString(arg7ValueIndex),
-                            cursor.getString(arg8ValueIndex),
-                            cursor.getString(arg9ValueIndex),
-                            cursor.getString(arg10ValueIndex)));
-                }
-            } while (cursor.moveToNext());
-        }else Log.d("mLog","0 rows");
-
-        return mainInformationList;
     }
 
     public static List<imageType> getListNamedAddItems(int numberCategory)
@@ -248,7 +116,7 @@ public class StringsProject {
                 categoryForAddNewNote = new String[]{
                         "Добавить веб-сайт",
                         "Добавить банковскую карту",
-                        "Добавить прочую информацию",
+                        //"Добавить прочую информацию",
                 };
                 break;
             }
@@ -267,9 +135,9 @@ public class StringsProject {
 
     private static void definitionInformationTitle(int language) {
         List<String> informationTitleList = new ArrayList<>();
-        informationTitle[0] = new String[10];
-        informationTitle[1] = new String[6];
-        informationTitle[2] = new String[6];
+        informationTitle[0] = new String[HowType];
+        informationTitle[1] = new String[HowType];
+        informationTitle[2] = new String[HowType];
         switch (language) {
             case 0: //Russian
             { //Website
@@ -380,7 +248,7 @@ public class StringsProject {
             0 - Title
              */
             case 0: {
-                textInMainActivity[0] = "Главная!!!";
+                textInMainActivity[0] = "Главная";
                 break;
             }
             case 1: {
@@ -389,6 +257,52 @@ public class StringsProject {
             }
             default: {
                 System.out.println("StringsProject definitionTextInMainActivity");
+                System.exit(3);
+                break;
+            }
+        }
+    }
+
+    static void definitionTextForSecurity(int language)
+    {
+        switch (language)
+        {
+            case 0: { //Russian
+                securityText[0] = "На данном устройстве не было обнаружено какой-либо информации.\n\nПожалуйста введите пароль и подтвердите его.";
+                securityText[1] = "Пожалуйста подтвердите ваш пароль";
+                securityText[2] = "Пожалуйста введите ваш пароль";
+
+                securityText[3] = "Создать профиль";
+                securityText[4] = "Войти в профиль";
+                break;
+            }
+            default: {
+                System.out.println("StringsProject definitionTextForSecurity");
+                System.exit(3);
+                break;
+            }
+        }
+    }
+
+    static void definitionErrorText(int language)
+    {
+        switch (language) {
+            case 0: { //Russian
+                errorText[0] = "Ошибка";
+                errorText[1] = "Это обязательное поле";
+                errorText[2] = "Введён неправильный пароль";
+                errorText[3] = "Пароли не совпадают";
+                errorText[4] = "Введите пароль ещё раз";
+                errorText[5] = "Пароль должен быть минимум "+ Security.getMinKey()+" символов";
+                break;
+            }
+            case 1: {
+                errorText[0] = "Error";
+                errorText[1] = "Error1";
+                break;
+            }
+            default: {
+                System.out.println("StringsProject definitionErrorText");
                 System.exit(3);
                 break;
             }
@@ -445,5 +359,22 @@ public class StringsProject {
         definitionTextForAddItem(language,type);
         System.out.println("GEASDS: "+type+" | "+ Arrays.toString(addNewItem[type]));
         return addNewItem[type];
+    }
+
+    public static String[] getErrorText() {
+        return errorText;
+    }
+
+    public static String getItemErrorText(int item){
+        return errorText[item];
+    }
+
+    public static String[] getSecurityText() {
+        return securityText;
+    }
+
+    public static String getItemSecurityText(int item)
+    {
+        return securityText[item];
     }
 }

@@ -22,6 +22,7 @@ import java.util.List;
 public class typesNotes {
 
     private static AutoCompleteTextView mAutoCompleteAddressSite;
+    private static Spinner spinner;
     ImageView imageView;
     private static int countNewNotes = 0;
 
@@ -51,7 +52,6 @@ public class typesNotes {
             }
             case 1: // Bank cards
             {
-                Spinner spinner;
                 if(numberField == 1)
                 {
                     spinner = NewNoteAdapter.NewNoteViewHolder.getLayoutAddCategory().findViewById(R.id.spinner);
@@ -85,6 +85,14 @@ public class typesNotes {
 
     public static int getCountNewNotes() {
         return countNewNotes;
+    }
+
+    public static void setCountNewNotes(int countNewNotes) {
+        typesNotes.countNewNotes = countNewNotes;
+    }
+
+    public static Spinner getSpinner() {
+        return spinner;
     }
 }
 

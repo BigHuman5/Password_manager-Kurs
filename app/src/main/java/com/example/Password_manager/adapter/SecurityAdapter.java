@@ -13,6 +13,7 @@ import com.example.Password_manager.DataBase.ActionsWithBD;
 import com.example.Password_manager.DataBase.DBHelper;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SecurityActivity;
+import com.example.Password_manager.StringsProject;
 
 public class SecurityAdapter extends SecurityActivity {
 
@@ -43,21 +44,25 @@ public class SecurityAdapter extends SecurityActivity {
         definitionItems();
         dbHelper = new DBHelper(context);
         database = dbHelper.getWritableDatabase(); // создание/открытие бд
-        fd();
+        definitionText();
     }
 
-    public void fd()
+    public void definitionText()
     {
         layoutWithActiveBD.setVisibility(View.GONE);
         layoutCreateBD.setVisibility(View.GONE);
         if(ActionsWithBD.checkSecretKey()) {
-            textEnterPasswordSecurity.setText("Тут есть бд");
+            /*База данных уже существует*/
+            textEnterPasswordSecurity.setText(StringsProject.getItemSecurityText(2));
+            buttonForEnterPassword.setText(StringsProject.getItemSecurityText(4));
             layoutWithActiveBD.setVisibility(View.VISIBLE);
         }
         else{
-            textCreatePasswordSecurity.setText("Тут пусто");
+            /*Базы данных ещё НЕТ*/
+            textCreatePasswordSecurity.setText(StringsProject.getItemSecurityText(0));
+            textConfirmationPasswordSecurity.setText(StringsProject.getItemErrorText(1));
+            buttonForCreatePassword.setText(StringsProject.getItemSecurityText(3));
             layoutCreateBD.setVisibility(View.VISIBLE);
-            //layoutWithActiveBD.setVisibility(View.VISIBLE);
         }
     }
 

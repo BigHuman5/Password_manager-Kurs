@@ -15,9 +15,13 @@ public class SecurityActivity extends Activity {
     private static Context context;
     private static ConstraintLayout securityActivity;
     private static Object BD = true;
+    private static int language;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        language = SettingsProject.getLanguage();
+        StringsProject.definitionTextForSecurity(language);
+        StringsProject.definitionErrorText(language);
         setContentView(R.layout.security_main); // назначение нового layout
         SecurityActivity.context = getApplicationContext();
         securityActivity = findViewById(R.id.securityActivity);
@@ -36,4 +40,6 @@ public class SecurityActivity extends Activity {
     public static Object getBD() {
         return BD;
     }
+
+    public static int getLanguage() { return language;}
 }

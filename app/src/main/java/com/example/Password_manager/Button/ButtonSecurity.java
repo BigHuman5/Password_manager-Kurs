@@ -12,6 +12,7 @@ import com.example.Password_manager.Notes.NewNoteAdapter;
 import com.example.Password_manager.Notes.Regex;
 import com.example.Password_manager.SecurityActivity;
 import com.example.Password_manager.SecurityInformation;
+import com.example.Password_manager.StringsProject;
 import com.example.Password_manager.adapter.SecurityAdapter;
 import com.example.Password_manager.model.Security;
 
@@ -22,29 +23,27 @@ public class ButtonSecurity {
     public ButtonSecurity()
     {
         VerifyExistingPassword();
-        CreateNedPassword();
+        CreateNewPassword();
     }
 
-    private void CreateNedPassword() {
+    private void CreateNewPassword() {
         SecurityAdapter.getButtonForCreatePassword().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String inputNewPassword = SecurityAdapter.getInputNewPassword().getText().toString();
                 String inputPasswordConfirmation = SecurityAdapter.getInputPasswordConfirmation().getText().toString();
+
                 SecurityAdapter.getErrorNewPasswordText().setVisibility(View.GONE);
                 SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.GONE);
                 if(Regex.isNewPasswordEntered(inputNewPassword))
                 {
                     SecurityAdapter.getErrorNewPasswordText().setVisibility(View.GONE);
-                    System.out.println("Пароль подходит по длине");
                     if(Regex.isNullPasswordConfirmation(inputPasswordConfirmation))
                     {
                         SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.GONE);
-                        System.out.println("Пароль введён ещё раз.");
                         if(Regex.isPasswordsSame(inputNewPassword,inputPasswordConfirmation))
                         {
                             SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.GONE);
-                            System.out.println("Пароли одинаковые");
                             ActionsWithBD.addNewSecretKey(inputNewPassword);
                             //
                             context = SecurityActivity.getContext();
@@ -55,17 +54,17 @@ public class ButtonSecurity {
                             //
                         }
                         else{
-                            SecurityAdapter.getErrorConfirmationPasswordText().setText("Пароли не совпадают!");
+                            SecurityAdapter.getErrorConfirmationPasswordText().setText(StringsProject.getItemErrorText(3));
                             SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.VISIBLE);
                         }
                     }
                     else{
-                        SecurityAdapter.getErrorConfirmationPasswordText().setText("Введите пароль ещё раз.");
+                        SecurityAdapter.getErrorConfirmationPasswordText().setText(StringsProject.getItemErrorText(4));
                         SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.VISIBLE);
                     }
                 }
                 else {
-                    SecurityAdapter.getErrorNewPasswordText().setText("Пароль должен быть минимум "+Security.getMinKey()+" символов");
+                    SecurityAdapter.getErrorNewPasswordText().setText(StringsProject.getItemErrorText(5));
                     SecurityAdapter.getErrorNewPasswordText().setVisibility(View.VISIBLE);
                 }
             }
@@ -96,7 +95,7 @@ public class ButtonSecurity {
                         context.startActivity(intent);
 
                     } else {
-                        SecurityAdapter.getErrorText().setText("Ошибочка!");
+                        SecurityAdapter.getErrorText().setText(StringsProject.getItemErrorText(2));
                         SecurityAdapter.getErrorText().setVisibility(View.VISIBLE);
                     }
                 }

@@ -88,8 +88,7 @@ public class ButtonMainActivity {
     }
     public static void addButton()
     {
-        MainActivityAdapter mainActivityAdapter = new MainActivityAdapter();
-        mainActivityAdapter.getAddNewItem().setOnClickListener(new View.OnClickListener() {
+        MainActivityAdapter.getAddNewItem().setOnClickListener(new View.OnClickListener() {
            public void onClick(View v) {
                context = MainActivity.getContext();
                Intent intent = new Intent(context, NewNoteActivity.class);

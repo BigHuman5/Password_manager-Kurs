@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
         mainInfoList = ActionsWithBD.getListMainInfo();
         //TestFunc(mainInfoList);
 
-        setCategoryRecycler(categoryList);
+        //setCategoryRecycler(categoryList);
         setMainInformationRecycler(mainInfoList);
         MainActivityRecycler();
         ButtonMainActivity.addButton();
@@ -69,11 +69,11 @@ public class MainActivity extends Activity {
         mainActivityAdapter = new MainActivityAdapter();
     }
 
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();
         System.out.println("Resume получило приложение!!");
-    }
+    }*/
 
     private void setCategoryRecycler(List<Category> categoryList) {
        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);

@@ -14,6 +14,7 @@ import com.example.Password_manager.Notes.typesNotes;
 import com.example.Password_manager.SecurityActivity;
 import com.example.Password_manager.SecurityInformation;
 import com.example.Password_manager.StringsProject;
+import com.example.Password_manager.category.imageType;
 import com.example.Password_manager.model.MainInfo;
 import com.example.Password_manager.model.MainInformation;
 
@@ -32,19 +33,67 @@ public class ActionsWithBD {
         dbHelper = new DBHelper(NewNoteActivity.getContext());
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-        ContentValues contentValues = new ContentValues(); // Для удобной работы с бд
-        contentValues.put(DBHelper.getKeyId(), MainActivity.getMainInfoList().size() + 1); // Ручной ввод id
-        contentValues.put(DBHelper.getKeyPosition(), MainActivity.getMainInfoList().size() + 1); // Определение позиции
-        contentValues.put(DBHelper.getKeyType(), NewNoteActivity.getCategory()); // Определение категории
-        if (NewNoteActivity.getCategory().equals("0")) {
-            contentValues.put(DBHelper.getKeyName(), typesNotes.getmAutoCompleteAddressSite().getText().toString()); // Определение названия сайта.
-            contentValues.put(DBHelper.getKeyFavorite(), false); // Определение избранного
+        try{
+            ContentValues contentValues = new ContentValues(); // Для удобной работы с бд
+            contentValues.put(DBHelper.getKeyId(), MainActivity.getMainInfoList().size() + 1); // Ручной ввод id
+            contentValues.put(DBHelper.getKeyPosition(), MainActivity.getMainInfoList().size() + 1); // Определение позиции
+            contentValues.put(DBHelper.getKeyType(), NewNoteActivity.getCategory()); // Определение категории
+            switch (NewNoteActivity.getCategory())
+            {
+                case "0":{
+                    String encKeyName = SecurityInformation.encryption(typesNotes.getmAutoCompleteAddressSite().getText().toString());
+                    String encFieldGet1 = SecurityInformation.encryption(fields.get(1).getInputText().getText().toString());
+                    String encFieldGet2 = SecurityInformation.encryption(fields.get(2).getInputText().getText().toString());
+                    String encFieldGet3 = SecurityInformation.encryption(fields.get(3).getInputText().getText().toString());
 
-            contentValues.put(DBHelper.getKEY_1ArgValue(), fields.get(1).getInputText().getText().toString());
-            contentValues.put(DBHelper.getKEY_2ArgValue(), fields.get(2).getInputText().getText().toString());
-            contentValues.put(DBHelper.getKEY_3ArgValue(), fields.get(3).getInputText().getText().toString());
+                    contentValues.put(DBHelper.getKeyName(), encKeyName); // Определение названия сайта.
+                    contentValues.put(DBHelper.getKeyFavorite(), false); // Определение избранного
 
+                    contentValues.put(DBHelper.getKEY_1ArgValue(), encFieldGet1);
+                    contentValues.put(DBHelper.getKEY_2ArgValue(), encFieldGet2);
+                    contentValues.put(DBHelper.getKEY_3ArgValue(), encFieldGet3);
+                    break;
+                }
+                case "1":
+                {
+                    int pos=typesNotes.getSpinner().getSelectedItemPosition();
+                    String type_card = SecurityInformation.encryption(StringsProject.getListNamedAddItems(1).get(pos).getName());
+                    String encKeyName = SecurityInformation.encryption(fields.get(0).getInputText().getText().toString());
+                    String encFieldGet1 = SecurityInformation.encryption(fields.get(2).getInputText().getText().toString());
+                    String encFieldGet2 = SecurityInformation.encryption(fields.get(3).getInputText().getText().toString());
+                    String encFieldGet3 = SecurityInformation.encryption(fields.get(4).getInputText().getText().toString());
+                    String encFieldGet4 = SecurityInformation.encryption(fields.get(5).getInputText().getText().toString());
+                    String encFieldGet5 = SecurityInformation.encryption(fields.get(6).getInputText().getText().toString());
 
+                    contentValues.put(DBHelper.getKeyName(), encKeyName); // Определение названия карты.
+                    contentValues.put(DBHelper.getKeyFavorite(), false); // Определение избранного
+
+                    contentValues.put(DBHelper.getKEY_1ArgValue(), encFieldGet1);
+                    contentValues.put(DBHelper.getKEY_2ArgValue(), encFieldGet2);
+                    contentValues.put(DBHelper.getKEY_3ArgValue(), encFieldGet3);
+                    contentValues.put(DBHelper.getKEY_4ArgValue(), encFieldGet4);
+                    contentValues.put(DBHelper.getKEY_5ArgValue(), encFieldGet5);
+                    contentValues.put(DBHelper.getKEY_10ArgValue(), type_card);
+                    break;
+                }
+                default:{
+                    System.out.println("ERROR ADDBD");
+                    return;
+                }
+            }
+            Log.d("addNewItem", "ID = " + contentValues.get(DBHelper.getKeyId())
+                    + "| Position = " + contentValues.get(DBHelper.getKeyPosition())
+                    + "| Type = " + contentValues.get(DBHelper.getKeyType())
+                    + "| Name = " + contentValues.get(DBHelper.getKeyName())
+                    + "| Favorite = " + contentValues.get(DBHelper.getKeyFavorite())
+                    + "| 1 ARG = " + contentValues.get(DBHelper.getKEY_1ArgValue())
+                    + "| 2 ARG = " + contentValues.get(DBHelper.getKEY_2ArgValue())
+                    + "| 3 ARG = " + contentValues.get(DBHelper.getKEY_3ArgValue()));
+            database.insert(DBHelper.getTableName(), null, contentValues);
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
         /*contentValues.put(DBHelper.getKeyType(),2);
         contentValues.put(DBHelper.getKeyName(),"Master Card");
         contentValues.put(DBHelper.getKeyFavorite(),false);
@@ -55,20 +104,6 @@ public class ActionsWithBD {
         contentValues.put(DBHelper.getKEY_4ArgValue(),"Evgef Erfdf");
         contentValues.put(DBHelper.getKEY_5ArgValue(),"54874");
         contentValues.put(DBHelper.getKEY_6ArgValue(),"Nice jock");*/
-
-
-            Log.d("addNewItem", "ID = " + contentValues.get(DBHelper.getKeyId())
-                    + "| Position = " + contentValues.get(DBHelper.getKeyPosition())
-                    + "| Type = " + contentValues.get(DBHelper.getKeyType())
-                    + "| Name = " + contentValues.get(DBHelper.getKeyName())
-                    + "| Favorite = " + contentValues.get(DBHelper.getKeyFavorite())
-                    + "| 1 ARG = " + contentValues.get(DBHelper.getKEY_1ArgValue())
-                    + "| 2 ARG = " + contentValues.get(DBHelper.getKEY_2ArgValue())
-                    + "| 3 ARG = " + contentValues.get(DBHelper.getKEY_3ArgValue()));
-            database.insert(DBHelper.getTableName(), null, contentValues);
-        } else {
-            System.out.println("ERROR ADDBD");
-        }
     }
 
     public static boolean checkSecretKey() {
@@ -93,12 +128,12 @@ public class ActionsWithBD {
     }
 
     public static boolean addNewSecretKey(String secretKey) throws SQLException {
-        secretKey = SecurityInformation.encryption(secretKey);
         try {
             dbHelper = new DBHelper(SecurityActivity.getContext());
             SQLiteDatabase database = dbHelper.getWritableDatabase();
+            String encSecretKey = SecurityInformation.encryption(secretKey);
 
-            database.execSQL("UPDATE " + DBHelper.getTableName() + " SET " + DBHelper.getKEY_1ArgValue() + " = '" + secretKey + "' WHERE " + DBHelper.getKeyType() + " = 0");
+            database.execSQL("UPDATE " + DBHelper.getTableName() + " SET " + DBHelper.getKEY_1ArgValue() + " = '" + encSecretKey + "' WHERE " + DBHelper.getKeyType() + " = 0");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -149,14 +184,16 @@ public class ActionsWithBD {
 
             int arg1ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_1ArgValue());
 
+            int arg10ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_10ArgValue());
+
 
             do {
                 if(cursor.getInt(idIndex) == 0) ;
                 else
                 {
-                    String encNameIndex = SecurityInformation.decryption(cursor.getString(nameIndex));
-                    String encArg1 = SecurityInformation.decryption(cursor.getString(arg1ValueIndex));
-                    mainInfoList.add(new MainInfo(cursor.getInt(typeIndex),cursor.getInt(positionIndex),encNameIndex,encArg1,cursor.getExtras().getBoolean(cursor.getString(favoriteIndex))));
+                    String decNameIndex = SecurityInformation.decryption(cursor.getString(nameIndex));
+                    String decArg1 = SecurityInformation.decryption(cursor.getString(arg1ValueIndex));
+                    mainInfoList.add(new MainInfo(cursor.getInt(typeIndex),cursor.getInt(positionIndex),cursor.getString(arg10ValueIndex),decNameIndex,decArg1,cursor.getExtras().getBoolean(cursor.getString(favoriteIndex))));
                 }
                 Log.d("mLog","ID = "+cursor.getInt(idIndex)
                         +" Type = "+cursor.getInt(typeIndex)
@@ -195,7 +232,6 @@ public class ActionsWithBD {
             int arg8ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_8ArgValue());
             int arg9ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_9ArgValue());
             int arg10ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_10ArgValue());
-            System.out.println(arg4ValueIndex);
             do {
                 if(position == cursor.getInt(idIndex))
                 {

@@ -4,30 +4,16 @@ import com.example.Password_manager.model.Security;
 
 public class Regex {
 
-    public static boolean nullName(String name)
+    public static boolean nullField(String field)
     {
-        if(name.length() == 0)
+        if(field.length() == 0)
         {
             System.out.println("Пустое имя");
             return true; // Если поле с именем пустое.
         }
         else
         {
-            System.out.println("Название: "+name);
-            return false;
-        }
-    }
-
-    public static boolean nullLogin(String login)
-    {
-        if(login.length() == 0)
-        {
-            System.out.println("Пустой логин");
-            return true; // Если поле с логином пустое.
-        }
-        else
-        {
-            System.out.println("Логин: "+login);
+            System.out.println("Поле: "+field);
             return false;
         }
     }

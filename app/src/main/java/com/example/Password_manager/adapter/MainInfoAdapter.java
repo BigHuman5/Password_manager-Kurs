@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.Password_manager.Button.ButtonMainActivity;
 import com.example.Password_manager.DataBase.ActionsWithBD;
+import com.example.Password_manager.MainActivity;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;
@@ -49,13 +50,33 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
     @Override
     public void onBindViewHolder(@NonNull MainInfoViewHolder mainInfoViewHolder, int i) {
         settingsProject = new SettingsProject();
-        int language = settingsProject.getLanguage();
+        int language = SettingsProject.getLanguage();
         stringsProject = new StringsProject(language);
         String visualProtectionText = "*****";
         int position = mainInfoViewHolder.getAdapterPosition();
         //MainActivity.getGetMainInfoRecycler().removeAllViews();
         //mainInfoViewHolder.img_content.setVisibility(View.VISIBLE);
-        mainInfoViewHolder.img_content.setImageResource(R.drawable.ic_baseline_website_24);
+        System.out.println(MainInfoList.get(i).getArg1()+" | "+MainInfoList.get(i).getType()+" | "+MainInfoList.get(i).getNameContent());
+        switch (MainInfoList.get(i).getType())
+        {
+            case 0:{
+                mainInfoViewHolder.img_content.setImageResource(R.drawable.ic_baseline_website_24);
+                break;
+            }
+            case 1: {
+                Context c = MainActivity.getContext();
+                String nameRes = MainInfoList.get(i).getNameCategory().toLowerCase();
+                System.out.println("nameRes: "+nameRes);
+                int id = c.getResources().getIdentifier("drawable/"+nameRes, null, c.getPackageName());
+                mainInfoViewHolder.img_content.setImageResource(id);
+                break;
+            }
+            default:{
+                mainInfoViewHolder.img_content.setImageResource(R.drawable.ic_baseline_website_24);
+                break;
+            }
+        }
+
         System.out.println(position);
         mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
 

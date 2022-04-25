@@ -13,7 +13,7 @@ public class MainActivityAdapter extends MainActivity {
 
     ConstraintLayout context;
 
-    private FloatingActionButton addNewItem;
+    private static FloatingActionButton addNewItem;
     private TextView titleInMain;
 
     public MainActivityAdapter() {
@@ -39,12 +39,12 @@ public class MainActivityAdapter extends MainActivity {
         titleInMain = mainInfoRecycler.findViewById(R.id.TitleInAddNewItem); // Title text in Main Activity
     }
 
-    public FloatingActionButton getAddNewItem() {
+    public static FloatingActionButton getAddNewItem() {
         return addNewItem;
     }
 
-    public void setAddNewItem(FloatingActionButton addNewItem) {
-        this.addNewItem = addNewItem;
+    public static void setAddNewItem(FloatingActionButton addNewItem) {
+        MainActivityAdapter.addNewItem = addNewItem;
     }
 
     public TextView getTitleInMain() {

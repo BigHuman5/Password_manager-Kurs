@@ -46,7 +46,6 @@
                     android:id="@+id/layout_Arg1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -426,22 +425,25 @@
 
         <ImageView
             android:id="@+id/MainInfo_imgContent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginBottom="29dp"
-            android:backgroundTint="@color/mainInfoWhite"
+            android:layout_width="45dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="5dp"
             android:contentDescription="img_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:scaleType="center"
-            android:visibility="visible"
+            android:minWidth="25dp"
+            android:minHeight="25dp"
+            android:scaleType="centerInside"
             app:fabSize="mini"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/name_category"
+            app:layout_constraintEnd_toStartOf="@+id/name_category"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_close_or_open_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_website_24" />
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/mastercard" />
+
 
         <TextView
             android:id="@+id/name_category"
