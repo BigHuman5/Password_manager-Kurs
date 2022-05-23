@@ -1,14 +1,11 @@
 package com.example.Password_manager;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.constraint.ConstraintLayout;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.Password_manager.Button.ButtonMainActivity;
 import com.example.Password_manager.DataBase.ActionsWithBD;
@@ -25,59 +22,61 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private static DBHelper dbHelper;
-    private RecyclerView categoryFilterRecycler, mainInfoRecycler;
+    private static RecyclerView categoryFilterRecycler, mainInfoRecycler;
     private ConstraintLayout mainConstraintLayout;
-    private static RecyclerView getMainInfoRecycler;
+    private static RecyclerView MainInfoRecycler;
     private static ConstraintLayout mainActivity;
     private CategoryAdapter categoryAdapter;
-    private MainInfoAdapter mainInfoAdapter;
+    private static MainInfoAdapter mainInfoAdapter;
     private MainActivityAdapter mainActivityAdapter;
+    private static int actualCategory=0;
 
     private static List<MainInfo> mainInfoList;
+    private static List<Category> categoryList;
 
     private static Context context;
+
+    public MainActivity() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbHelper = new DBHelper(this);
-        getMainInfoRecycler = findViewById(R.id.Main);
+        MainInfoRecycler = findViewById(R.id.Main);
         mainActivity = findViewById(R.id.newnoteActivity);
-        SettingsProject settingsProject = new SettingsProject();
-        int language = settingsProject.getLanguage();
 
         MainActivity.context = getApplicationContext();
 
-        List<Category> categoryList=new ArrayList<>();
         mainInfoList = new ArrayList<>();
 
-        StringsProject stringsProject = new StringsProject(language);
+        StringsProject stringsProject = new StringsProject();
         categoryList = stringsProject.getListCategoryFilterTitle();
-        mainInfoList = ActionsWithBD.getListMainInfo();
-        //TestFunc(mainInfoList);
+        mainInfoList = ActionsWithBD.getListMainInfo(actualCategory);
 
-        //setCategoryRecycler(categoryList);
-        setMainInformationRecycler(mainInfoList);
+        setCategoryRecycler(categoryList);
+        setMainInformationRecycler();
         MainActivityRecycler();
         ButtonMainActivity.addButton();
+        ButtonMainActivity.menuButton();
         System.out.println("Я тут все данные обновил и всё новоё!");
     }
 
-    private void MainActivityRecycler() {
-        mainConstraintLayout = findViewById(R.id.newnoteActivity);
+    public void MainActivityRecycler() {
+        mainConstraintLayout = MainActivity.MainInfoRecycler.findViewById(R.id.newnoteActivity);
         mainActivityAdapter = new MainActivityAdapter();
     }
 
-    /*@Override
-    protected void onResume() {
+    /*
+    @Override
+    public void onResume() {
         super.onResume();
         System.out.println("Resume получило приложение!!");
     }*/
 
     private void setCategoryRecycler(List<Category> categoryList) {
-       RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false);
-        categoryFilterRecycler = findViewById(R.id.CategoryFilterTitle);
+       RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        categoryFilterRecycler = findViewById(R.id.TypeCategory);
         categoryFilterRecycler.setLayoutManager(layoutManager);
 
         categoryAdapter=new CategoryAdapter(this,categoryList);
@@ -85,11 +84,12 @@ public class MainActivity extends Activity {
         categoryFilterRecycler.setAdapter(categoryAdapter);
     }
 
-    private void setMainInformationRecycler(List<MainInfo> mainInfoList)
+    public void setMainInformationRecycler()
     {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        mainInfoList = ActionsWithBD.getListMainInfo(actualCategory);
 
-        mainInfoRecycler = findViewById(R.id.Main);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        mainInfoRecycler = MainActivity.MainInfoRecycler.findViewById(R.id.Main);
         mainInfoRecycler.setLayoutManager(layoutManager);
 
         mainInfoAdapter=new MainInfoAdapter(this,mainInfoList);
@@ -112,5 +112,13 @@ public class MainActivity extends Activity {
     public static Context getContext()
     {
         return MainActivity.context;
+    }
+
+    public static int getActualCategory() {
+        return actualCategory;
+    }
+
+    public static void setActualCategory(int actualCategory) {
+        MainActivity.actualCategory = actualCategory;
     }
 }

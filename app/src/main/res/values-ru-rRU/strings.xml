@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Менеджер паролей</string>
+    <string name="main_title">Главная</string>
+
+    <!--Страница с защитой-->
+    <string name="db_clear_MainText">"На данном устройстве не было обнаружено какой-либо информации.\\n\\nПожалуйста введите пароль и подтвердите его.\"; "</string>
+    <string name="enterYourPassword">Пожалуйста введите ваш пароль</string>
+    <string name="confirmYourPassword">Пожалуйста подтвердите ваш пароль</string>
+
+    <string name="buttonCreateProfile">Создать профиль</string>
+    <string name="buttonLoginToProfile">Войти в профиль</string>
+
+    <string name="alter_menu">Меню</string>
+    <string name="alter_add">Добавить новую запись</string>
+    <!--Все категории-->
+    <string name="all_categories">Все категории</string>
+    <string name="favorite_categories">Избранное</string>
+    <string name="website_categories">Веб-сайты</string>
+    <string name="cards_categories">Кредитные карты</string>
+    <!--Добавить новую запись-->
+    <string name="headerCategories">Укажите, что вы хотите добавить</string>
+    <string name="web_add_new_item">Добавить новый веб-сайт</string>
+    <string name="cards_add_new_item">Добавить банковскую карту</string>
+    <string name="headerAddNote">Введите информацию которую хотите добавить</string>
+    <!--Текст из добавления записей-->
+    <string name="commentary">Комментарий</string>
+        <!--сайт-->
+    <string name="address">Адрес</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+        <!--Карта-->
+    <string name="name">Название</string>
+    <string name="typeCard">Тип карты</string>
+    <string name="number">Номер карты</string>
+    <string name="date">Дата окончания</string>
+    <string name="cvv">Код безопасности/CVV</string>
+    <string name="ownerName">Имя владельца карты</string>
+    <string name="pin">Пин код</string>
+    <!--Ошибки-->
+    <string name="error">Ошибка</string>
+    <string name="err_requiredField">Это поле обязательно для заполнения</string>
+    <string name="err_wrongPass">Введен неправильный пароль</string>
+    <string name="err_dntMatchPass">Пароли не совпадают</string>
+    <string name="err_enterPassAgain">Введите пароль еще раз</string>
+    <string name="err_PassLeast">Пароль должен быть не меньше</string>
+    <string name="characters">" символов"</string>
+
+</resources>

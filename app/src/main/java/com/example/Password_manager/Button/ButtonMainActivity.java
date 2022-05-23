@@ -1,5 +1,6 @@
 package com.example.Password_manager.Button;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.example.Password_manager.Notes.NewNoteActivity;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
 import com.example.Password_manager.StringsProject;
+import com.example.Password_manager.adapter.CategoryAdapter;
 import com.example.Password_manager.adapter.MainActivityAdapter;
 import com.example.Password_manager.adapter.MainInfoAdapter;
 import com.example.Password_manager.model.MainInfo;
@@ -97,5 +99,38 @@ public class ButtonMainActivity {
            }
        }
         );
+    }
+
+    public static void menuButton()
+    {
+        MainActivityAdapter.getMenuButton().setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            public void onClick(View v) {
+                try{
+                    StringsProject.definitionCategoryFilterTitle();
+                    if(MainActivityAdapter.getMenu().getVisibility() == View.GONE) {
+                        MainActivityAdapter.getMenu().setVisibility(View.VISIBLE);
+                        closeMenu();
+                    }
+                    else{
+                        MainActivityAdapter.getMenu().setVisibility(View.GONE);
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e);
+                    MainActivityAdapter.getMenuButton().setVisibility(View.GONE); // Ошибка если не определяется меню.
+                }
+            }
+        });
+    }
+
+    public static void closeMenu()
+    {
+        MainActivityAdapter.getMainLayout().setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                MainActivityAdapter.getMenu().setVisibility(View.GONE);
+            }
+        });
     }
 }

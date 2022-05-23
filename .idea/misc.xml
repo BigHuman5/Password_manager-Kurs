@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.291" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/all_categories.xml" value="0.1435" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/favorite_categories.xml" value="0.1435" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.18796296296296297" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_add_card_24.xml" value="0.182" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_baseline_add_website_24.xml" value="0.182" />
@@ -18,13 +20,15 @@
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/ic_launcher_background.xml" value="0.291" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/menu_white.xml" value="0.253" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/vk2.xml" value="0.1235" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/drawable/website_categories.xml" value="0.1435" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/font/roboto_bold.xml" value="0.2740740740740741" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/font/roboto_thin.xml" value="0.2740740740740741" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/MainInfo_Content.xml" value="0.1118659420289855" />
-        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/activity_main.xml" value="0.2932098765432099" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/category_addnewnote.xml" value="0.3623789764868603" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/category_filter.xml" value="0.33" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/enterinfo_addnewnote.xml" value="0.33" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/fields_menu.xml" value="0.33" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/layouts_typesaddnotes.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/maininfo_content.xml" value="0.4462962962962963" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/maininfo_content_maybe.xml" value="0.3925233644859813" />
@@ -33,10 +37,12 @@
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/newnote.xml" value="0.33" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/security_main.xml" value="0.33" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/selectcategory_addnewnote.xml" value="0.33" />
-        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/standardview_nameitem.xml" value="0.33" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/standardview_nameitem.xml" value="0.4191304347826087" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/standartview_nameitem.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/website_open.xml" value="0.36160714285714285" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/layout/websites_close.xml" value="0.22657054582904224" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1435" />
+        <entry key="..\:/Users/user/Password_manager/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1435" />
         <entry key="..\:/Users/user/Password_manager/app/src/main/res/xml/actions.xml" value="0.1286231884057971" />
         <entry key="..\:/Users/user/TestApplication/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/user/TestApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10092592592592593" />

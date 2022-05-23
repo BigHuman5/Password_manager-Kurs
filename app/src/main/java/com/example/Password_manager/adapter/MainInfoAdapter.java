@@ -30,8 +30,6 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
     Context context;
     List<MainInfo> MainInfoList;
     List<MainInformation> mainInfoInformationList;
-    StringsProject stringsProject;
-    SettingsProject settingsProject;
     boolean work = false;
     int work1 = 0;
 
@@ -49,18 +47,14 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
 
     @Override
     public void onBindViewHolder(@NonNull MainInfoViewHolder mainInfoViewHolder, int i) {
-        settingsProject = new SettingsProject();
-        int language = SettingsProject.getLanguage();
-        stringsProject = new StringsProject(language);
         String visualProtectionText = "*****";
         int position = mainInfoViewHolder.getAdapterPosition();
         //MainActivity.getGetMainInfoRecycler().removeAllViews();
         //mainInfoViewHolder.img_content.setVisibility(View.VISIBLE);
-        System.out.println(MainInfoList.get(i).getArg1()+" | "+MainInfoList.get(i).getType()+" | "+MainInfoList.get(i).getNameContent());
         switch (MainInfoList.get(i).getType())
         {
             case 0:{
-                mainInfoViewHolder.img_content.setImageResource(R.drawable.ic_baseline_website_24);
+                mainInfoViewHolder.img_content.setImageResource(R.drawable.website_categories);
                 break;
             }
             case 1: {
@@ -72,13 +66,14 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 break;
             }
             default:{
-                mainInfoViewHolder.img_content.setImageResource(R.drawable.ic_baseline_website_24);
+                mainInfoViewHolder.img_content.setImageResource(R.drawable.website_categories);
                 break;
             }
         }
 
         System.out.println(position);
         mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
+
 
         mainInfoViewHolder.name_content.setText(MainInfoList.get(i).getNameContent());
         if(mainInfoViewHolder.CardViewforInformation.getVisibility() == View.VISIBLE)
@@ -89,12 +84,16 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
             @Override
             //@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
             public void onClick(View v){
+                ButtonMainActivity.closeMenu();
                 mainInfoInformationList = ActionsWithBD.getListMainInformation(position);
                 //
                 parametersField parametersField = new parametersField(mainInfoInformationList.get(0).getType());
                 boolean secure[] = parametersField.getSecureField();
                 boolean copy[] = parametersField.getCopyField();
                 System.out.println(position);
+
+                String nameRes;
+                int id;
 
                 if(mainInfoViewHolder.CardViewforInformation.getVisibility() == View.GONE)
                 {
@@ -112,7 +111,9 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                    mainInfoViewHolder.CardViewforInformation.setVisibility(View.GONE);
                 }
                 //
-                mainInfoViewHolder.NameArg1.setText(mainInfoInformationList.get(0).getNameArg1());
+                nameRes = mainInfoInformationList.get(0).getNameArg1();
+                mainInfoViewHolder.NameArg1.setText(context.getResources().getIdentifier(nameRes, "string", context.getPackageName()));
+
                 /*Обработка визуальной защиты данных*/
                 if(secure[0])
                 {
@@ -126,7 +127,8 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 //
                 if(mainInfoInformationList.get(0).getArg2() != null)
                 {
-                    mainInfoViewHolder.NameArg2.setText(mainInfoInformationList.get(0).getNameArg2());
+                    nameRes = mainInfoInformationList.get(0).getNameArg2();
+                    mainInfoViewHolder.NameArg2.setText(context.getResources().getIdentifier(nameRes, "string", context.getPackageName()));
                     if(secure[1])
                     {
                         mainInfoViewHolder.Arg2.setText(visualProtectionText);
@@ -141,7 +143,8 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 //
                 if(mainInfoInformationList.get(0).getNameArg3() != null)
                 {
-                    mainInfoViewHolder.NameArg3.setText(mainInfoInformationList.get(0).getNameArg3());
+                    nameRes = mainInfoInformationList.get(0).getNameArg3();
+                    mainInfoViewHolder.NameArg3.setText(context.getResources().getIdentifier(nameRes, "string", context.getPackageName()));
                     if(secure[2])
                     {
                         mainInfoViewHolder.Arg3.setText(visualProtectionText);
@@ -156,7 +159,8 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 //
                 if(mainInfoInformationList.get(0).getArg4() != null)
                 {
-                    mainInfoViewHolder.NameArg4.setText(mainInfoInformationList.get(0).getNameArg4());
+                    nameRes = mainInfoInformationList.get(0).getNameArg4();
+                    mainInfoViewHolder.NameArg4.setText(context.getResources().getIdentifier(nameRes, "string", context.getPackageName()));
                     if(secure[3])
                     {
                         mainInfoViewHolder.Arg4.setText(visualProtectionText);
@@ -169,8 +173,22 @@ public class MainInfoAdapter extends RecyclerView.Adapter<MainInfoAdapter.MainIn
                 }
                 else mainInfoViewHolder.layout_Arg4.setVisibility(View.GONE);
                 /*              */
-                System.out.println("ARG2: "+mainInfoInformationList.get(0).getArg2()+" | "+secure[2]);
-                System.out.println(mainInfoViewHolder.Arg1.getText());
+                if(!copy[0])
+                {
+                    mainInfoViewHolder.copy1.hide();
+                }
+                if(!copy[1])
+                {
+                    mainInfoViewHolder.copy2.hide();
+                }
+                if(!copy[2])
+                {
+                    mainInfoViewHolder.copy3.hide();
+                }
+                if(!copy[3])
+                {
+                    mainInfoViewHolder.copy4.hide();
+                }
                 ButtonMainActivity.secure(mainInfoViewHolder,visualProtectionText,mainInfoInformationList);
             }
 

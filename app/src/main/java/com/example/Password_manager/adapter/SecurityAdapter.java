@@ -17,7 +17,7 @@ import com.example.Password_manager.StringsProject;
 
 public class SecurityAdapter extends SecurityActivity {
 
-    private int logoInt = R.drawable.facebook;
+    private int logoInt = R.drawable.logo;
     private DBHelper dbHelper;
     private SQLiteDatabase database;
     //
@@ -53,15 +53,10 @@ public class SecurityAdapter extends SecurityActivity {
         layoutCreateBD.setVisibility(View.GONE);
         if(ActionsWithBD.checkSecretKey()) {
             /*База данных уже существует*/
-            textEnterPasswordSecurity.setText(StringsProject.getItemSecurityText(2));
-            buttonForEnterPassword.setText(StringsProject.getItemSecurityText(4));
             layoutWithActiveBD.setVisibility(View.VISIBLE);
         }
         else{
             /*Базы данных ещё НЕТ*/
-            textCreatePasswordSecurity.setText(StringsProject.getItemSecurityText(0));
-            textConfirmationPasswordSecurity.setText(StringsProject.getItemErrorText(1));
-            buttonForCreatePassword.setText(StringsProject.getItemSecurityText(3));
             layoutCreateBD.setVisibility(View.VISIBLE);
         }
     }

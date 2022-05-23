@@ -54,17 +54,14 @@ public class ButtonSecurity {
                             //
                         }
                         else{
-                            SecurityAdapter.getErrorConfirmationPasswordText().setText(StringsProject.getItemErrorText(3));
                             SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.VISIBLE);
                         }
                     }
                     else{
-                        SecurityAdapter.getErrorConfirmationPasswordText().setText(StringsProject.getItemErrorText(4));
                         SecurityAdapter.getErrorConfirmationPasswordText().setVisibility(View.VISIBLE);
                     }
                 }
                 else {
-                    SecurityAdapter.getErrorNewPasswordText().setText(StringsProject.getItemErrorText(5));
                     SecurityAdapter.getErrorNewPasswordText().setVisibility(View.VISIBLE);
                 }
             }
@@ -95,7 +92,6 @@ public class ButtonSecurity {
                         context.startActivity(intent);
 
                     } else {
-                        SecurityAdapter.getErrorText().setText(StringsProject.getItemErrorText(2));
                         SecurityAdapter.getErrorText().setVisibility(View.VISIBLE);
                     }
                 }

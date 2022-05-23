@@ -48,7 +48,7 @@ public class NewNoteActivity extends Activity {
         List<Category> categoryList=new ArrayList<>();
         String[][] informationTitle;
 
-        StringsProject stringsProject = new StringsProject(language); // инициализация для поиска названия полей.
+        StringsProject stringsProject = new StringsProject(); // инициализация для поиска названия полей.
         categoryList = stringsProject.getListCategoryAddNewNotes(); // Список с названиями полей
 
         addNewItem = findViewById(R.id.buttonAddNewItem); // Поиск кнопки подтверждения добавления.

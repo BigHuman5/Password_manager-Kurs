@@ -1,7 +1,48 @@
 <resources>
     <string name="app_name">Password manager</string>
-    <string name="main_title">Главная</string>
+    <string name="main_title">Main</string>
 
+    <!--Security layout-->
+    <string name="db_clear_MainText">No information was found on this device.  Please enter the password and confirm it.</string>
+    <string name="enterYourPassword">Please enter your password</string>
+    <string name="confirmYourPassword">Please confirm your password</string>
+
+    <string name="buttonCreateProfile">Create a profile</string>
+    <string name="buttonLoginToProfile">Login to profile</string>
+    <!--Main Layout-->
     <string name="alter_menu">Menu</string>
     <string name="alter_add">Add new</string>
+    <!--Categories-->
+    <string name="all_categories">All categories</string>
+    <string name="favorite_categories">Favorite</string>
+    <string name="website_categories">Websites</string>
+    <string name="cards_categories">Bank cards</string>
+    <!--Add new note-->
+    <string name="headerCategories">Specify what you want to add</string>
+    <string name="web_add_new_item">Add website</string>
+    <string name="cards_add_new_item">Add bank card</string>
+    <string name="headerAddNote">Specify information to add</string>
+    <!--Text from add note-->
+    <string name="commentary">Commentary</string>
+    <!--Web-->
+    <string name="address">Address</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <!--Card-->
+    <string name="name">Name</string>
+    <string name="typeCard">Type card</string>
+    <string name="number">Number card</string>
+    <string name="date">Valid through</string>
+    <string name="cvv">CVV</string>
+    <string name="ownerName">Cardholder Name</string>
+    <string name="pin">Pin</string>
+    <!--Errors-->
+    <string name="error">Error</string>
+    <string name="err_requiredField">This is a required field</string>
+    <string name="err_wrongPass">Wrong password entered</string>
+    <string name="err_dntMatchPass">Passwords do not match</string>
+    <string name="err_enterPassAgain">Enter password again</string>
+    <string name="err_PassLeast">Password must be at least</string>
+    <string name="characters">characters</string>
+
 </resources>

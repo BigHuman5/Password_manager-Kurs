@@ -1,6 +1,14 @@
 package com.example.Password_manager.model;
 
 public class Category {
+    /*int id;
+    String nameCategory;
+
+    public Category(int id, String nameCategory) {
+        this.id = id;
+        this.nameCategory = nameCategory;
+    }*/
+
     int id;
     String nameCategory;
 

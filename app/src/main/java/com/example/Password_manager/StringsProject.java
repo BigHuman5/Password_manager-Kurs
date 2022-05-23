@@ -19,30 +19,21 @@ import java.util.List;
 public class StringsProject {
 
     private static final int HowType = 10;
-    private final int howTextsInMainActivity = 4;
-    private String[] categoryFilterTitle;
+    private static String[] categoryFilterTitle;
     private String[] categoryForAddNewNote;
     private static String[][] informationTitle = new String[HowType][];
     private static String[][] addNewItem = new String[HowType][];
-    private String[] textInMainActivity = new String[howTextsInMainActivity];
-    private static String[] errorText = new String[10];
-    private static String[] securityText = new String[10];
 
-    private DBHelper dbHelper;
-    private SQLiteDatabase database;
-    private ContentValues contentValues;
 
-    public StringsProject(int language) {
-        definitionCategoryFilterTitle(language);
-        definitionInformationTitle(language);
-        definitionTextInMainActivity(language);
-        definitionCategoryForAddNewNote(language);
-        definitionErrorText(language);
+    public StringsProject() {
+        definitionInformationTitle();
+        definitionCategoryForAddNewNote();
     }
 
     public List<Category> getListCategoryFilterTitle()
     {
         List<Category> categoryList = new ArrayList<>();
+        definitionCategoryFilterTitle();
         for(int i=0;i<categoryFilterTitle.length;i++)
             categoryList.add(new Category(i,categoryFilterTitle[i]));
         return categoryList;
@@ -79,246 +70,75 @@ public class StringsProject {
 
 
 
-    public void definitionCategoryFilterTitle(int language) {
-        switch (language) {
-            case 0: //Russian
-            {
+    public static void definitionCategoryFilterTitle() {
                 categoryFilterTitle = new String[]{
-                        "Всё",
-                        "Избранное",
-                        "Веб-сайты",
-                        "Банковские карты",
-                        "Прочее",
+                        "all_categories",
+                        "favorite_categories",
+                        //"website_categories",
+                        //"cards_categories",
                 };
-                break;
-            }
-            case 1: //English
-            {
-                categoryFilterTitle = new String[]{
-                        "Websites",
-                        "Bank cards",
-                        "Other",
-                };
-                break;
-            }
-            default:
-            {
-                System.out.println("StringsProject definitionCategoryFilterTitle");
-                System.exit(3);
-            }
-        }
     }
 
-    public void definitionCategoryForAddNewNote(int language) {
-        switch (language) {
-            case 0: //Russian
-            {
+    public void definitionCategoryForAddNewNote() {
                 categoryForAddNewNote = new String[]{
-                        "Добавить веб-сайт",
-                        "Добавить банковскую карту",
-                        //"Добавить прочую информацию",
+                        "web_add_new_item",
+                        "cards_add_new_item",
                 };
-                break;
-            }
-            case 1: //English
-            {
-                categoryForAddNewNote = new String[]{
-                        "Websites",
-                        "Bank cards",
-                        "Other",
-                };
-                break;
-            }
-            default: System.exit(3);
-        }
     }
 
-    private static void definitionInformationTitle(int language) {
-        List<String> informationTitleList = new ArrayList<>();
+    private static void definitionInformationTitle() {
         informationTitle[0] = new String[HowType];
         informationTitle[1] = new String[HowType];
-        informationTitle[2] = new String[HowType];
-        switch (language) {
-            case 0: //Russian
-            { //Website
-                informationTitle[0][0] = "Логин";
-                informationTitle[0][1] = "Пароль";
-                informationTitle[0][2] = "Комментарий";
-                //Card
-                informationTitle[1][0] = "Номер карты";
-                informationTitle[1][1] = "Дата окончания";
-                informationTitle[1][2] = "Код безопасности/CVV";
-                informationTitle[1][3] = "Имя владельца карты";
-                informationTitle[1][4] = "Пин код";
-                informationTitle[1][5] = "Комментарий";
-                break;
-            }
-            case 1: //English
-            {
-                //Website
-                informationTitle[1][0] = "Login";
-                informationTitle[1][1] = "Password";
-                informationTitle[1][2] = "Comment";
-                break;
-            }
-            default: {
-                System.out.println("StringsProject definitionInformationTitle");
-                System.exit(3);
-            }
-        }
+
+        informationTitle[0][0] = "login";
+        informationTitle[0][1] = "password";
+        informationTitle[0][2] = "commentary";
+        //Card
+        informationTitle[1][0] = "number";
+        informationTitle[1][1] = "date";
+        informationTitle[1][2] = "cvv";
+        informationTitle[1][3] = "ownerName";
+        informationTitle[1][4] = "pin";
+        informationTitle[1][5] = "commentary";
     }
 
-    public static void definitionTextForAddItem(int language,int numberCategory)
+    public static void definitionTextForAddItem(int numberCategory)
     {
         addNewItem[0] = new String[informationTitle[0].length+1];
         addNewItem[1] = new String[informationTitle[1].length+2];
-        addNewItem[2] = new String[informationTitle[2].length+2];
         int[] numberStartFor = new int[getHowType()];
         int numberForFor = 0;
-        definitionInformationTitle(language);
-        switch (language) {
-            case 0: //Russian
-            {
+        definitionInformationTitle();
                 switch (numberCategory)
                 {
                     case 0: //Website
                     {
-                        addNewItem[numberCategory][0] = "Адрес";
+                        addNewItem[numberCategory][0] = "address";
                         numberStartFor[numberCategory] = 1;
                         break;
                     }
                     case 1: //Card
                     {
-                        addNewItem[numberCategory][0] = "Название";
-                        addNewItem[numberCategory][1] = "Тип карты";
-                        numberStartFor[numberCategory] = 2;
-                        break;
-                    }
-                    default: {
-                        System.out.println("StringsProject definitionTextInMainActivity"+language+" | "+numberCategory);
-                        System.exit(3);
-                        break;
-                    }
-                }
-                break;
-            }
-            case 1: //English
-            {
-                switch (numberCategory)
-                {
-                    case 0: //Website
-                    {
-                        addNewItem[numberCategory][0] = "Address";
+                        addNewItem[numberCategory][0] = "name";
+                        addNewItem[numberCategory][1] = "typeCard";
                         numberStartFor[numberCategory] = 1;
                         break;
                     }
-                    case 1: //Card
-                    {
-                        addNewItem[numberCategory][0] = "Name";
-                        addNewItem[numberCategory][1] = "Type";
-                        numberStartFor[numberCategory] = 2;
-                        break;
-                    }
                     default: {
-                        System.out.println("StringsProject definitionTextInMainActivity"+language+" | "+numberCategory);
+                        System.out.println("StringsProject definitionTextInMainActivity"+" | "+numberCategory);
                         System.exit(3);
                         break;
                     }
                 }
-            }
-            default: {
-                System.out.println("StringsProject definitionTextInMainActivity"+language);
-                System.exit(3);
-                break;
-            }
-        }
-            for (int i = numberStartFor[numberCategory]; i <= addNewItem[numberCategory].length; i++) {
-                try {
 
+            for (int i = numberStartFor[numberCategory]; i <= addNewItem[numberCategory].length; i++)
+            {
+                try {
                     addNewItem[numberCategory][i] = informationTitle[numberCategory][numberForFor];
-                } catch (Exception ignored) {
                 }
+                catch (Exception ignored) {                }
                 numberForFor++;
             }
-        }
-
-    private void definitionTextInMainActivity(int language) {
-        switch (language) {
-            /*
-            0 - Title
-             */
-            case 0: {
-                textInMainActivity[0] = "Главная";
-                break;
-            }
-            case 1: {
-                textInMainActivity[0] = "Main";
-                break;
-            }
-            default: {
-                System.out.println("StringsProject definitionTextInMainActivity");
-                System.exit(3);
-                break;
-            }
-        }
-    }
-
-    static void definitionTextForSecurity(int language)
-    {
-        switch (language)
-        {
-            case 0: { //Russian
-                securityText[0] = "На данном устройстве не было обнаружено какой-либо информации.\n\nПожалуйста введите пароль и подтвердите его.";
-                securityText[1] = "Пожалуйста подтвердите ваш пароль";
-                securityText[2] = "Пожалуйста введите ваш пароль";
-
-                securityText[3] = "Создать профиль";
-                securityText[4] = "Войти в профиль";
-                break;
-            }
-            default: {
-                System.out.println("StringsProject definitionTextForSecurity");
-                System.exit(3);
-                break;
-            }
-        }
-    }
-
-    static void definitionErrorText(int language)
-    {
-        switch (language) {
-            case 0: { //Russian
-                errorText[0] = "Ошибка";
-                errorText[1] = "Это обязательное поле";
-                errorText[2] = "Введён неправильный пароль";
-                errorText[3] = "Пароли не совпадают";
-                errorText[4] = "Введите пароль ещё раз";
-                errorText[5] = "Пароль должен быть минимум "+ Security.getMinKey()+" символов";
-                break;
-            }
-            case 1: {
-                errorText[0] = "Error";
-                errorText[1] = "Error1";
-                break;
-            }
-            default: {
-                System.out.println("StringsProject definitionErrorText");
-                System.exit(3);
-                break;
-            }
-        }
-    }
-
-    public void setCategoryFilterTitle(String[] categoryFilterTitle) {
-        this.categoryFilterTitle = categoryFilterTitle;
-    }
-
-    public String[] getTextInMainActivity() {
-        return textInMainActivity;
-    }
-
-    public void setTextInMainActivity(String[] textInMainActivity) {
-        this.textInMainActivity = textInMainActivity;
     }
 
     public static int getInformationTitleLength(int element)
@@ -355,26 +175,8 @@ public class StringsProject {
         return HowType;
     }
 
-    public static String[] getAddNewItem(int language, int type) {
-        definitionTextForAddItem(language,type);
-        System.out.println("GEASDS: "+type+" | "+ Arrays.toString(addNewItem[type]));
+    public static String[] getAddNewItem(int type) {
+        definitionTextForAddItem(type);
         return addNewItem[type];
-    }
-
-    public static String[] getErrorText() {
-        return errorText;
-    }
-
-    public static String getItemErrorText(int item){
-        return errorText[item];
-    }
-
-    public static String[] getSecurityText() {
-        return securityText;
-    }
-
-    public static String getItemSecurityText(int item)
-    {
-        return securityText[item];
     }
 }

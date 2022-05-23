@@ -133,7 +133,7 @@ public class ActionsWithBD {
             SQLiteDatabase database = dbHelper.getWritableDatabase();
             String encSecretKey = SecurityInformation.encryption(secretKey);
 
-            database.execSQL("UPDATE " + DBHelper.getTableName() + " SET " + DBHelper.getKEY_1ArgValue() + " = '" + encSecretKey + "' WHERE " + DBHelper.getKeyType() + " = 0");
+            database.execSQL("UPDATE " + DBHelper.getTableName() + " SET " + DBHelper.getKEY_1ArgValue() + " = '" + encSecretKey + "' WHERE " + DBHelper.getKeyType() + " = (-1)");
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -152,7 +152,7 @@ public class ActionsWithBD {
             if (cursor.moveToFirst()) {
                 int typeIndex = cursor.getColumnIndex(DBHelper.getKeyType());
                 int arg1ValueIndex = cursor.getColumnIndex(DBHelper.getKEY_1ArgValue());
-                if (cursor.getInt(typeIndex) == 0)
+                if (cursor.getInt(typeIndex) == (-1))
                 {
                     return cursor.getString(arg1ValueIndex);
                 }
@@ -167,14 +167,34 @@ public class ActionsWithBD {
         return null;
     }
 
-    public static List<MainInfo> getListMainInfo()
+    public static List<MainInfo> getListMainInfo(int actualCategory)
     {
         List<MainInfo> mainInfoList = new ArrayList<>();
         dbHelper = MainActivity.getDbHelper();
         database = dbHelper.getWritableDatabase();
         contentValues = new ContentValues(); // Для удобной работы с бд
 
-        Cursor cursor = database.query(DBHelper.getTableName(),null,null,null,null,null,null);
+        //Cursor cursor = database.query(DBHelper.getTableName(),null,null,null,null,null,null);
+        String selectQuery;
+        selectQuery = "SELECT "
+                +DBHelper.getKeyId()+","
+                +DBHelper.getKeyType()+","
+                +DBHelper.getKeyPosition()+","
+                +DBHelper.getKeyName()+","
+                +DBHelper.getKeyFavorite()+","
+                +DBHelper.getKEY_1ArgValue()+","
+                +DBHelper.getKEY_10ArgValue()
+                +" FROM " + DBHelper.getTableName()+" WHERE "+DBHelper.getKeyType()+"!=(-1)";
+        if(actualCategory==1)
+        {
+            selectQuery+=" AND "+DBHelper.getKeyFavorite()+"==1";
+        }
+        else if(actualCategory!=0)
+        {
+            selectQuery+=" AND "+DBHelper.getKeyType()+"=="+(actualCategory-2);
+        }
+        System.out.println(selectQuery);
+        Cursor cursor = database.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
             int idIndex = cursor.getColumnIndex(DBHelper.getKeyId());
             int typeIndex = cursor.getColumnIndex(DBHelper.getKeyType());
@@ -301,5 +321,39 @@ public class ActionsWithBD {
         }else Log.d("mLog","0 rows");
 
         return mainInformationList;
+    }
+
+    public static  int getAmountItem(int item)
+    {
+        int amount=6;
+        try {
+            dbHelper = new DBHelper(SecurityActivity.getContext());
+            SQLiteDatabase database = dbHelper.getWritableDatabase();
+            String selectQuery;
+            selectQuery = "SELECT COUNT("+ DBHelper.getKeyId() +") FROM " + DBHelper.getTableName()+" WHERE ";
+            if(item == 0) // all items
+            {
+                selectQuery += DBHelper.getKeyType()+"!=(-1)";
+            }
+            else if(item == 1) { // favorite
+                selectQuery += DBHelper.getKeyFavorite()+"=1 and "+ DBHelper.getKeyType()+"!=(-1)";
+            }
+            else { //other
+                selectQuery += DBHelper.getKeyType()+"="+(item-2)+" and "+ DBHelper.getKeyType()+"!=(-1)";
+            }
+            System.out.println(selectQuery);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                Cursor cursor = database.rawQuery(selectQuery, null);
+
+                if (cursor.moveToFirst()) {
+                    do {
+                       amount=Integer.parseInt(cursor.getString(0));
+                    } while (cursor.moveToNext());
+                }
+            return amount;
+        } catch (Exception e) {
+            System.out.println(e);
+            return -1;
+        }
     }
 }

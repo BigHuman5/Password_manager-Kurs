@@ -5,7 +5,6 @@
     android:id="@+id/newnoteActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".MainActivity">
 
         <android.support.design.widget.FloatingActionButton
@@ -21,28 +20,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
 
-        <android.support.constraint.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CategoryFilterTitle"
+            app:layout_constraintTop_toBottomOf="@+id/header_newnoteActivity"
             app:layout_constraintVertical_bias="0.0">
 
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/Main"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="100dp"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    android:orientation="vertical">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:id="@+id/constraintLayout2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp">
 
 
-        </android.support.constraint.ConstraintLayout>
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/Main"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="100dp"
+                                    app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                        </android.support.constraint.ConstraintLayout>
+                </LinearLayout>
+        </ScrollView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/CategoryFilterTitle"
@@ -68,7 +79,7 @@
             tools:ignore="MissingConstraints">
                 <!-- elevation+borderWidth для удаления ободка -->
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/floatingActionButton3"
+                    android:id="@+id/menuFloating"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginStart="15dp"
@@ -99,9 +110,162 @@
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/floatingActionButton3"
+                    app:layout_constraintStart_toEndOf="@+id/menuFloating"
                     app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            android:gravity="bottom"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/mainInfoWhite">
+
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/FirstLine"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            app:cardBackgroundColor="@color/forActionButtonMain"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0">
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/TypeCategory"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="1dp"
+                            android:layout_marginBottom="5dp"
+                            app:layout_constraintBottom_toTopOf="@+id/SecondLine"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/FirstLine"
+                            app:layout_constraintVertical_bias="0.0">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/SecondLine"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="1dp"
+                            android:layout_marginBottom="5dp"
+                            app:cardBackgroundColor="@color/forActionButtonMain"
+                            app:layout_constraintBottom_toTopOf="@+id/OtherMenu"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/TypeCategory">
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/OtherMenu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/SecondLine" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RecyclerMenu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <android.support.constraint.ConstraintLayout
+                            android:id="@+id/menuLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toTopOf="@+id/languageLayout"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0">
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <android.support.constraint.ConstraintLayout
+                            android:id="@+id/languageLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@id/menuLayout"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/menuLayout">
+
+                                <ImageView
+                                    android:id="@+id/img_country"
+                                    android:layout_width="24dp"
+                                    android:layout_height="0dp"
+                                    android:contentDescription="img_content"
+                                    android:minWidth="15dp"
+                                    android:minHeight="15dp"
+                                    android:scaleType="centerInside"
+                                    app:fabSize="auto"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@+id/nameLanguage"
+                                    app:layout_constraintHorizontal_bias="0.9"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0"
+                                    app:srcCompat="@drawable/country_russia" />
+
+                                <TextView
+                                    android:id="@+id/nameLanguage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/main_bold"
+                                    android:maxLines="1"
+                                    android:text="Русский"
+                                    android:textSize="24dp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.60"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                        </android.support.constraint.ConstraintLayout>
+
+                </android.support.constraint.ConstraintLayout>
+        </android.support.design.widget.NavigationView>
 
 </android.support.constraint.ConstraintLayout>

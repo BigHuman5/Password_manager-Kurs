@@ -17,7 +17,7 @@ public class parametersField {
                 copyField[0] = false;
                 //
                 secureField[1] = true; // Пароль
-                copyField[1] = true;
+                copyField[1] = false;
                 //
                 secureField[2] = true; // Комментарий
                 copyField[2] = false;
@@ -26,22 +26,22 @@ public class parametersField {
             case 1:
             {
                 secureField[0] = true; // Номер карты
-                copyField[0] = true;
+                copyField[0] = false;
                 //
                 secureField[1] = true; // Дата окончания
-                copyField[1] = true;
+                copyField[1] = false;
                 //
                 secureField[2] = true; // Код безопасности/CVV
-                copyField[2] = true;
+                copyField[2] = false;
                 //
                 secureField[3] = true; // Имя владельца карты
-                copyField[3] = true;
+                copyField[3] = false;
                 //
                 secureField[4] = true; // Пин код
-                copyField[4] = true;
+                copyField[4] = false;
                 //
                 secureField[5] = false; // Комментарий
-                copyField[5] = true;
+                copyField[5] = false;
                 break;
             }
             default:

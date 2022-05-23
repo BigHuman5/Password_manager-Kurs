@@ -14,7 +14,7 @@ public class StandartAddDB {
         ContentValues contentValues = new ContentValues(); // Для удобной работы с бд
 
         contentValues.put(DBHelper.getKeyId(),0);
-        contentValues.put(DBHelper.getKeyType(),0);
+        contentValues.put(DBHelper.getKeyType(),-1);
         contentValues.put(DBHelper.getKeyFavorite(),false);
         Log.d("mLog2","ID = "+contentValues.get(DBHelper.getKeyId())
                 +"| Type = "+contentValues.get(DBHelper.getKeyType())

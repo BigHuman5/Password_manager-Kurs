@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Password_manager.Button.ButtonAddNewNote;
+import com.example.Password_manager.MainActivity;
 import com.example.Password_manager.Notes.model.Fields;
 import com.example.Password_manager.R;
 import com.example.Password_manager.SettingsProject;
@@ -31,6 +32,8 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
 
     int numberCategory;
 
+    int idForText = 0;
+
     private int countInformationTitle = 0;
 
     public NewNoteAdapter(Context context, List<Category> categoryList, String typeCategory) {
@@ -42,8 +45,6 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         countInformationTitle = StringsProject.getCountInformationTitle(numberCategory);
         System.out.println(numberCategory+" | "+StringsProject.getInformationTitleLength(numberCategory) + " Число");
     }
-
-    public TextView[][] f = new TextView[StringsProject.getInformationTitleLength(numberCategory)+200][2];
 
     private ArrayList<Fields> fields = new ArrayList<Fields>();
 
@@ -65,11 +66,12 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
     @Override
     public void onBindViewHolder(@NonNull NewNoteViewHolder newNoteViewHolder, int i) {
         if(typeCategory.equals("")) { //Если прилетел пустой ответ, тоесть тип не выбрал. Отображается выбор типа
-            newNoteViewHolder.nameCategory.setText(categoryList.get(i).getNameCategory());
+            idForText = context.getResources().getIdentifier(categoryList.get(i).getNameCategory(), "string", context.getPackageName());
+            newNoteViewHolder.nameCategory.setText(idForText);
             NewNoteActivity.getAddNewItem().hide();
             switch (i) { /* Подстановка изображения в типы категорий. */
                 case 0: { // Изображение веб сайта
-                    newNoteViewHolder.imageView.setImageResource(R.drawable.ic_baseline_website_24);
+                    newNoteViewHolder.imageView.setImageResource(R.drawable.website_categories);
                     break;
                 }
                 case 1: // Изображение добавление карты
@@ -79,7 +81,7 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
                 }
                 default: // Выкидывает картинку сайт при ошибке.
                 {
-                    newNoteViewHolder.imageView.setImageResource(R.drawable.ic_baseline_website_24);
+                    newNoteViewHolder.imageView.setImageResource(R.drawable.website_categories);
                     break;
                 }
             }
@@ -90,8 +92,12 @@ public class NewNoteAdapter extends RecyclerView.Adapter<NewNoteAdapter.NewNoteV
         {
             NewNoteViewHolder.errorText.setVisibility(View.INVISIBLE);
             NewNoteViewHolder.inputText.setText("");
-            informationTitle = StringsProject.getAddNewItem(getLanguage(),numberCategory);
-            newNoteViewHolder.titleText.setText(informationTitle[i]);
+            informationTitle = StringsProject.getAddNewItem(numberCategory);
+
+            idForText = context.getResources().getIdentifier(informationTitle[i], "string", context.getPackageName());
+            newNoteViewHolder.titleText.setText(idForText);
+
+            //newNoteViewHolder.titleText.setText(informationTitle[i]);
             new typesNotes(numberCategory,i);
             fields.add(new Fields(NewNoteViewHolder.getInputText(),NewNoteViewHolder.getErrorText()));
             System.out.println("\n"+i+" | "+fields.get(i).getInputText().getText().toString()+" | "+fields.get(i).getErrorText().getText().toString());

@@ -20,8 +20,6 @@ public class SecurityActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         language = SettingsProject.getLanguage();
-        StringsProject.definitionTextForSecurity(language);
-        StringsProject.definitionErrorText(language);
         setContentView(R.layout.security_main); // назначение нового layout
         SecurityActivity.context = getApplicationContext();
         securityActivity = findViewById(R.id.securityActivity);

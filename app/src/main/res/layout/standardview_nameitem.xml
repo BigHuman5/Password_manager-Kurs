@@ -11,16 +11,17 @@
         android:layout_width="24dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:contentDescription="img_content"
         android:minWidth="15dp"
         android:minHeight="15dp"
         android:scaleType="centerInside"
         app:fabSize="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/bottomCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.50"
         app:srcCompat="@drawable/mastercard" />
 
     <TextView
@@ -34,10 +35,54 @@
         android:text="Standard Name View"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_nameItem"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/amountItems"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/img_nameItem"
         app:layout_constraintTop_toTopOf="@+id/img_nameItem"
         app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/amountItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="0"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/standardNameView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/leftCard"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:foreground="@color/iris_100"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/iris_100"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/bottomCard"
+        android:layout_width="0dp"
+        android:layout_height="2px"
+        android:layout_marginBottom="10dp"
+        android:foreground="@color/iris_100"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/iris_100"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/standardNameView"
+        app:layout_constraintVertical_bias="1.0">
+
+    </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

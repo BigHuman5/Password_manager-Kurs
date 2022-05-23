@@ -49,14 +49,12 @@ public class ButtonAddNewNote
                    if (Regex.nullField(typesNotes.getmAutoCompleteAddressSite().getText().toString())) //Проверка названия сайта на пустоту
                    {
                        items.get(0).getErrorText().setVisibility(View.VISIBLE);
-                       items.get(0).getErrorText().setText(StringsProject.getItemErrorText(1));
                        isFieldNull = true;
                    } else items.get(0).getErrorText().setVisibility(View.GONE);
                    //
                    if (Regex.nullField(items.get(1).getInputText().getText().toString())) // Проверка логина на сайте на пустоту.
                    {
                        items.get(1).getErrorText().setVisibility(View.VISIBLE);
-                       items.get(1).getErrorText().setText(StringsProject.getItemErrorText(1));
                        isFieldNull = true;
                    } else items.get(0).getErrorText().setVisibility(View.GONE);
                }
@@ -64,14 +62,12 @@ public class ButtonAddNewNote
                    if (Regex.nullField(items.get(0).getInputText().getText().toString())) //Проверка названия карты на пустоту
                    {
                        items.get(0).getErrorText().setVisibility(View.VISIBLE);
-                       items.get(0).getErrorText().setText(StringsProject.getItemErrorText(1));
                        isFieldNull = true;
                    } else items.get(0).getErrorText().setVisibility(View.GONE);
                    //
                    if (Regex.nullField(items.get(2).getInputText().getText().toString()))
                    {
                        items.get(2).getErrorText().setVisibility(View.VISIBLE);
-                       items.get(2).getErrorText().setText(StringsProject.getItemErrorText(1));
                        isFieldNull = true;
                    } else items.get(0).getErrorText().setVisibility(View.GONE);
                }
